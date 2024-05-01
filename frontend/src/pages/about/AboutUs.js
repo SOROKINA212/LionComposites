@@ -16,7 +16,7 @@ const ContentContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Изменено на flex-start */
     background-color: #1A1A1A;
 `;
 
@@ -38,9 +38,11 @@ const SmallRectangleLeft = styled.div`
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
     margin-top: 15px;
-    left: 0%;
+    left: -1%;
     padding: 30px;
+    margin-right: 0.5%;
 `;
+
 
 
 
@@ -85,10 +87,9 @@ const InfoRectangle = styled.div`
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
     margin-top: 15px;
-    margin-left: 20%;
+    margin-left: 20px; /* Изменено на 20px */
     padding: 30px;
     color: #F0F0F0;
-    position: relative;
 `;
 
 const InfoTitle = styled.h2`
