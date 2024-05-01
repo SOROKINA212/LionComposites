@@ -15,7 +15,6 @@ const ContentContainer = styled.div`
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: flex-start; /* Изменено на flex-start */
     background-color: #1A1A1A;
 `;
@@ -52,6 +51,7 @@ const Heading = styled.h1`
     font-size: 64px;
     color: #F0F0F0;
     margin-bottom: 20px;
+    align: center;
 `;
 
 const ContactList = styled.ul`
@@ -113,6 +113,7 @@ const AboutRectangle = styled.div`
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25); /* Тень со сдвигом по y на 11px и blur 28.7 */
     padding: 30px;
     color: #F0F0F0;
+    position: relative;
 `;
 
 const AboutTitle = styled.h2`
@@ -130,11 +131,42 @@ const AboutText = styled.p`
 
 const AdditionalTitle = styled.h2`
     font-family: Montserrat, sans-serif;
-    font-weight: 500; /* Стиль Medium */
+    font-weight: 500;
     font-size: 48px;
-    margin-top: 50px; /* Отступ сверху */
-    text-align: left; /* Выравнивание текста по левому краю */
+    margin-top: 25%;
+    position: relative; /* Изменено на absolute */
+    margin-left: 10%; /* Выравнивание по левому краю */
+    left: -5%; /* Выравнивание по верхнему краю */
     color: #F0F0F0;
+`;
+
+const AdditionalRectangle = styled.div`
+    width: 550px;
+    height: 600px;
+    background-color: #353333;
+    border-radius: 40px;
+    box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
+    position: relative;
+    left: 9%;
+    margin-top: 5%; /* Размещаем прямоугольник под надписью с дополнительным отступом 30px */
+    padding: 30px;
+    color: #F0F0F0;
+`;
+
+const AdditionalText = styled.p`
+    font-family: Montserrat, sans-serif;
+    font-weight: 300;
+    font-size: 45px;
+    color: #F0F0F0;
+`;
+
+const CooperationTitle = styled.h3`
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    color: #FFFFFF;
+    margin-top: 25%; /* Дополнительный отступ сверху */
+    margin-left: 40%; /* Дополнительный отступ справа */
 `;
 
 
@@ -172,7 +204,14 @@ const AboutUsPage = () => {
                             полиэфирные основы Гелькоут и Топкоут.
                         </AboutText>
                     </AboutRectangle>
-                        <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
+                    <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
+                    <AdditionalRectangle>
+                        <AdditionalText>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </AdditionalText>
+                    </AdditionalRectangle>
+                    <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
             </ContentContainer>
             <Footer />
         </PageContainer>
