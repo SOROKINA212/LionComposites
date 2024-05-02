@@ -4,9 +4,13 @@ import SubHeader from './components/SubHeader';
 import styled from 'styled-components';
 import Footer from './components/Footer';
 import MapComponent from './components/Map';
+import { useMediaQuery } from 'react-responsive';
+
+
 
 const PageContainer = styled.div`
     background-color: #1A1A1A;
+
 `;
 
 const ContentContainer = styled.div`
@@ -194,56 +198,78 @@ const CooperationTitle = styled.h3`
 
 
 const AboutUsPage = () => {
-    return (
-        <PageContainer>
-            <Header />
-            <SubHeader />
-            <ContentContainer>
-            <Heading>Где мы находимся?</Heading>
-                <Rectangle>
-                    <AddressTitle>Адрес</AddressTitle>
-                    <AddressText>ул. Вавилова 68/2, г. Ростов-на-Дону (магазин находится на территории Базы "РОСАВТОМАТИК"), Ростовская область, Россия</AddressText>
-                </Rectangle>
-                <SmallRectangleLeft>
-                    <AddressTitle>Контакты:</AddressTitle>
-                    <ContactList>
-                        <ContactListItem>+79185757291</ContactListItem>
-                        <ContactListItem>lion-td</ContactListItem>
-                        <ContactListItem>info@lionug.ru</ContactListItem>
-                        <ContactListItem>lion-td@mail.ru</ContactListItem>
-                    </ContactList>
-                </SmallRectangleLeft>
-                <MapComponent/>
-                 <InfoRectangle>
-                        <InfoTitle>Режим:</InfoTitle>
-                        <InfoText>Пн-Пт<br/>09:00-17:00<br/>Сб-Вс<br/>09:00-15:00</InfoText>
-                    </InfoRectangle>
-                    <AboutRectangle>
-                        <AboutTitle>О компании</AboutTitle>
-                        <AboutText>
-                            Компания «Лион Композит» специализируется на поставках смолы и стекломатериалов.
-                            Предприятие находится в Ростове-на-Дону, сотрудничает с клиентами по всей России.
-                            В каталоге помимо прочего представлены колеровочные пигментные пасты,
-                            полиэфирные основы Гелькоут и Топкоут.
-                        </AboutText>
-                    </AboutRectangle>
-                    <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
-                    <AdditionalRectangle>
-                        <AdditionalText>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        </AdditionalText>
-                    </AdditionalRectangle>
-                      <AdditionalLeftRectangle>
-                        <AdditionalLeftText>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        </AdditionalLeftText>
-                    </AdditionalLeftRectangle>
-                    <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
-            </ContentContainer>
-            <Footer />
-        </PageContainer>
-    );
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1224px)"
+  });
+
+  const isTablet = useMediaQuery({
+    query: "(max-width: 1224px)"
+  });
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 786px)"
+  });
+
+  const isPortrait = useMediaQuery({
+    query: "(orientation: portrait)"
+  });
+
+  const isRetina = useMediaQuery({
+    query: "(max-resolution: 300dpi)"
+  });
+
+  return (
+    <PageContainer>
+      <Header />
+      <SubHeader />
+      <ContentContainer>
+        {isDesktop && <Heading>Где мы находимся?</Heading>}
+        <Rectangle>
+          <AddressTitle>Адрес</AddressTitle>
+          <AddressText>ул. Вавилова 68/2, г. Ростов-на-Дону (магазин находится на территории Базы "РОСАВТОМАТИК"), Ростовская область, Россия</AddressText>
+        </Rectangle>
+        {(isDesktop || isTablet) && <SmallRectangleLeft>
+          <AddressTitle>Контакты:</AddressTitle>
+          <ContactList>
+            <ContactListItem>+79185757291</ContactListItem>
+            <ContactListItem>lion-td</ContactListItem>
+            <ContactListItem>info@lionug.ru</ContactListItem>
+            <ContactListItem>lion-td@mail.ru</ContactListItem>
+          </ContactList>
+        </SmallRectangleLeft>}
+        <MapComponent />
+        <InfoRectangle>
+          <InfoTitle>Режим:</InfoTitle>
+          <InfoText>Пн-Пт<br/>09:00-17:00<br/>Сб-Вс<br/>09:00-15:00</InfoText>
+        </InfoRectangle>
+        <AboutRectangle>
+          <AboutTitle>О компании</AboutTitle>
+          <AboutText>
+            Компания «Лион Композит» специализируется на поставках смолы и стекломатериалов.
+            Предприятие находится в Ростове-на-Дону, сотрудничает с клиентами по всей России.
+            В каталоге помимо прочего представлены колеровочные пигментные пасты,
+            полиэфирные основы Гелькоут и Топкоут.
+          </AboutText>
+        </AboutRectangle>
+        {isDesktop && <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>}
+        <AdditionalRectangle>
+          <AdditionalText>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          </AdditionalText>
+        </AdditionalRectangle>
+        {(isDesktop || isTablet) && <AdditionalLeftRectangle>
+          <AdditionalLeftText>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          </AdditionalLeftText>
+        </AdditionalLeftRectangle>}
+        <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
+      </ContentContainer>
+      <Footer />
+    </PageContainer>
+  );
 };
 
 export default AboutUsPage;
+
+
