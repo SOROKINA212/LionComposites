@@ -37,9 +37,9 @@ const SmallRectangleLeft = styled.div`
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
     margin-top: 15px;
-    left: -1%;
+    left: 0%;
     padding: 30px;
-    margin-right: 0.5%;
+    margin-right: 1.5%;
 `;
 
 
@@ -51,7 +51,8 @@ const Heading = styled.h1`
     font-size: 64px;
     color: #F0F0F0;
     margin-bottom: 20px;
-    align: center;
+    text-align: center; /* Добавлено выравнивание текста по центру */
+    width: 100%; /* Добавлено, чтобы текст занимал всю ширину контейнера */
 `;
 
 const ContactList = styled.ul`
@@ -159,14 +160,36 @@ const AdditionalText = styled.p`
     font-size: 45px;
     color: #F0F0F0;
 `;
+const AdditionalLeftRectangle = styled.div`
+    width: 550px;
+    height: 600px;
+    background-color: #353333;
+    border-radius: 40px;
+    box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
+    position: relative;
+    left: 0%;
+    margin-top: 5%;
+    padding: 30px;
+    color: #F0F0F0;
+    margin-bottom: 7%;
+`;
 
+const AdditionalLeftText = styled.p`
+    font-family: Montserrat, sans-serif;
+    font-weight: 300;
+    font-size: 45px;
+    color: #F0F0F0;
+`;
 const CooperationTitle = styled.h3`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
     font-size: 48px;
     color: #FFFFFF;
     margin-top: 25%; /* Дополнительный отступ сверху */
-    margin-left: 40%; /* Дополнительный отступ справа */
+    margin-left: auto; /* Установлено автоматическое выравнивание слева */
+    margin-right: 0%; /* Добавлен отступ справа */
+    width: 40%; /* Ширина контейнера установлена на 40% */
+    text-align: left; /* Выравнивание текста по правому краю */
 `;
 
 
@@ -211,6 +234,11 @@ const AboutUsPage = () => {
                             Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
                         </AdditionalText>
                     </AdditionalRectangle>
+                      <AdditionalLeftRectangle>
+                        <AdditionalLeftText>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </AdditionalLeftText>
+                    </AdditionalLeftRectangle>
                     <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
             </ContentContainer>
             <Footer />
