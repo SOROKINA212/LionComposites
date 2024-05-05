@@ -34,8 +34,8 @@ const Rectangle = styled.div`
 `;
 
 const SmallRectangleLeft = styled.div`
-    width: 331px;
-    height: 392px;
+    width: 80%;
+    height: 50%;
     position: relative;
     background-color: #353333;
     border-radius: 40px;
@@ -43,7 +43,7 @@ const SmallRectangleLeft = styled.div`
     margin-top: 15px;
     left: 0%;
     padding: 30px;
-    margin-right: 1.5%;
+
 `;
 
 
@@ -52,19 +52,28 @@ const SmallRectangleLeft = styled.div`
 const Heading = styled.h1`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 64px;
+    font-size: 10vw;
     color: #F0F0F0;
     margin-bottom: 20px;
     text-align: center; /* Добавлено выравнивание текста по центру */
     width: 100%; /* Добавлено, чтобы текст занимал всю ширину контейнера */
 `;
 
+const ContactTitle = styled.h2`
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 7vw;
+    color: #F0F0F0;
+    margin-top: 10%;
+    margin-bottom: 2%;
+`;
 const ContactList = styled.ul`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 32px;
+    font-size: 4vw;
     color: #F0F0F0;
     list-style-type: disc;
+    margin-top: 5%;
 `;
 
 const ContactListItem = styled.li`
@@ -74,25 +83,26 @@ const ContactListItem = styled.li`
 const AddressTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 7vw;
     color: #F0F0F0;
-    margin-bottom: 20px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
 `;
 
 const AddressText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 32px;
+    font-size: 4vw;
     color: #F0F0F0;
 `;
 const InfoRectangle = styled.div`
-    width: 331px;
-    height: 392px;
+    width: 80%;
+    height: 50%;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
-    margin-top: 15px;
-    margin-left: 20px; /* Изменено на 20px */
+    margin-top:5%;
     padding: 30px;
     color: #F0F0F0;
 `;
@@ -100,13 +110,18 @@ const InfoRectangle = styled.div`
 const InfoTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Стиль Medium */
-    font-size: 48px;
+    font-size: 7vw;
+    color: #F0F0F0;
+    margin-bottom: 3%;
 `;
 
 const InfoText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300; /* Стиль Lighter */
-    font-size: 32px;
+    font-size: 4vw;
+    margin-top: 3%;
+    text-align: center;
+    margin-bottom: 3%;
 `;
 
 const AboutRectangle = styled.div`
@@ -124,24 +139,27 @@ const AboutRectangle = styled.div`
 const AboutTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Стиль Medium */
-    font-size: 48px;
+    font-size: 7vw;
     margin-bottom: 20px; /* Отступ снизу */
+    color: #F0F0F0;
 `;
 
 const AboutText = styled.p`
     font-family: Montserrat, sans-serif;
-    font-weight: 300; /* Стиль Lighter */
-    font-size: 32px;
+    font-weight: 200; /* Стиль Lighter */
+    font-size: 4vw;
+    color: #F0F0F0;
+    text-align: justify;
+    margin-bottom: 1%;
 `;
 
 const AdditionalTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 7vw;
     margin-top: 25%;
     position: relative; /* Изменено на absolute */
-    margin-left: 10%; /* Выравнивание по левому краю */
-    left: -5%; /* Выравнивание по верхнему краю */
+    left: 0%; /* Выравнивание по верхнему краю */
     color: #F0F0F0;
 `;
 
@@ -161,7 +179,7 @@ const AdditionalRectangle = styled.div`
 const AdditionalText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 45px;
+    font-size: 4vw;
     color: #F0F0F0;
 `;
 const AdditionalLeftRectangle = styled.div`
@@ -181,19 +199,15 @@ const AdditionalLeftRectangle = styled.div`
 const AdditionalLeftText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 45px;
+    font-size: 4vw;
     color: #F0F0F0;
 `;
 const CooperationTitle = styled.h3`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 7vw;
     color: #FFFFFF;
-    margin-top: 25%; /* Дополнительный отступ сверху */
-    margin-left: auto; /* Установлено автоматическое выравнивание слева */
-    margin-right: 0%; /* Добавлен отступ справа */
-    width: 40%; /* Ширина контейнера установлена на 40% */
-    text-align: left; /* Выравнивание текста по правому краю */
+    margin-top: 5%; /* Дополнительный отступ сверху */
 `;
 
 
@@ -209,37 +223,36 @@ const AboutUsMobile = () => {
           <AddressTitle>Адрес</AddressTitle>
           <AddressText>ул. Вавилова 68/2, г. Ростов-на-Дону (магазин находится на территории Базы "РОСАВТОМАТИК"), Ростовская область, Россия</AddressText>
         </Rectangle>
-        <SmallRectangleLeft>
-          <AddressTitle>Контакты:</AddressTitle>
+        <MapComponent />
+          <ContactTitle>Контакты:</ContactTitle>
+          <SmallRectangleLeft>
           <ContactList>
             <ContactListItem>+79185757291</ContactListItem>
             <ContactListItem>lion-td</ContactListItem>
             <ContactListItem>info@lionug.ru</ContactListItem>
             <ContactListItem>lion-td@mail.ru</ContactListItem>
           </ContactList>
-        </SmallRectangleLeft>
-        <MapComponent />
-        <InfoRectangle>
+          </SmallRectangleLeft>
           <InfoTitle>Режим:</InfoTitle>
-          <InfoText>Пн-Пт<br/>09:00-17:00<br/>Сб-Вс<br/>09:00-15:00</InfoText>
+        <InfoRectangle>
+          <InfoText>Пн-Пт:  09:00-17:00<br/><br/>Сб-Вс:  09:00-15:00</InfoText>
         </InfoRectangle>
-        <AboutRectangle>
           <AboutTitle>О компании</AboutTitle>
-
-        </AboutRectangle>
+           <AboutText>
+            Компания «Лион Композит» специализируется на поставках смолы и стекломатериалов.
+            Предприятие находится в Ростове-на-Дону, сотрудничает с клиентами по всей России.
+            В каталоге помимо прочего представлены колеровочные пигментные пасты,
+            полиэфирные основы Гелькоут и Топкоут.
+          </AboutText>
         <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
-        <AdditionalRectangle>
           <AdditionalText>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
             Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
           </AdditionalText>
-        </AdditionalRectangle>
-        <AdditionalLeftRectangle>
+           <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
           <AdditionalLeftText>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
           </AdditionalLeftText>
-        </AdditionalLeftRectangle>
-        <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
       </ContentContainer>
       <Footer />
     </PageContainer>
