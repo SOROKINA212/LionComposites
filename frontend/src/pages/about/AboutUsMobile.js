@@ -30,6 +30,7 @@ const Rectangle = styled.div`
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
     margin-top: 7%;
+    margin-bottom: 7%;
     padding: 30px;
 `;
 

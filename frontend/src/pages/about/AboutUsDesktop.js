@@ -16,12 +16,13 @@ const PageContainer = styled.div`
 const ContentContainer = styled.div`
     max-width: 70%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2%;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start; /* Изменено на flex-start */
     background-color: #1A1A1A;
 `;
+
 
 const Rectangle = styled.div`
     position: relative;
@@ -30,20 +31,20 @@ const Rectangle = styled.div`
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
     margin-top: 7%;
-    padding: 30px;
+    padding: 3%;
 `;
 
 const SmallRectangleLeft = styled.div`
-    width: 331px;
-    height: 392px;
+    width: 20em;
+    height: 25em;
     position: relative;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
-    margin-top: 15px;
+    margin-top: 1%;
     left: 0%;
-    padding: 30px;
-    margin-right: 1.5%;
+    padding: 2%;
+    margin-right: 2.5%;
 `;
 
 
@@ -52,7 +53,7 @@ const SmallRectangleLeft = styled.div`
 const Heading = styled.h1`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 64px;
+    font-size: 4vw;
     color: #F0F0F0;
     margin-bottom: 20px;
     text-align: center; /* Добавлено выравнивание текста по центру */
@@ -62,51 +63,51 @@ const Heading = styled.h1`
 const ContactList = styled.ul`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 32px;
+    font-size: 1.6vw;
     color: #F0F0F0;
     list-style-type: disc;
 `;
 
 const ContactListItem = styled.li`
-    margin-bottom: 10px;
+    margin-bottom: 5%;
 `;
 
 const AddressTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 2.5vw;
     color: #F0F0F0;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 `;
 
 const AddressText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 32px;
+    font-size: 1.6vw;
     color: #F0F0F0;
 `;
 const InfoRectangle = styled.div`
-    width: 331px;
-    height: 392px;
+    width: 20rem;
+    height: 24.7rem;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
-    margin-top: 15px;
-    margin-left: 20px; /* Изменено на 20px */
-    padding: 30px;
+    margin-top: 1%;
+    margin-left: 2.5%;
+    padding: 2.2%;
     color: #F0F0F0;
 `;
 
 const InfoTitle = styled.h2`
     font-family: Montserrat, sans-serif;
-    font-weight: 500; /* Стиль Medium */
-    font-size: 48px;
+    font-weight: 500;
+    font-size: 2.5vw;
 `;
 
 const InfoText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300; /* Стиль Lighter */
-    font-size: 32px;
+    font-size: 1.7vw;
 `;
 
 const AboutRectangle = styled.div`
@@ -116,7 +117,7 @@ const AboutRectangle = styled.div`
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25); /* Тень со сдвигом по y на 11px и blur 28.7 */
-    padding: 30px;
+    padding: 3%;
     color: #F0F0F0;
     position: relative;
 `;
@@ -124,20 +125,20 @@ const AboutRectangle = styled.div`
 const AboutTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Стиль Medium */
-    font-size: 48px;
-    margin-bottom: 20px; /* Отступ снизу */
+    font-size: 2.5vw;
+    margin-bottom: 2%; /* Отступ снизу */
 `;
 
 const AboutText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300; /* Стиль Lighter */
-    font-size: 32px;
+    font-size: 1.7vw;
 `;
 
 const AdditionalTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 2.5vw;
     margin-top: 25%;
     position: relative; /* Изменено на absolute */
     margin-left: 10%; /* Выравнивание по левому краю */
@@ -146,34 +147,34 @@ const AdditionalTitle = styled.h2`
 `;
 
 const AdditionalRectangle = styled.div`
-    width: 550px;
-    height: 600px;
+    width: 34rem;
+    height: 38rem;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
     position: relative;
     left: 9%;
     margin-top: 5%; /* Размещаем прямоугольник под надписью с дополнительным отступом 30px */
-    padding: 30px;
+    padding: 2%;
     color: #F0F0F0;
 `;
 
 const AdditionalText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 45px;
+    font-size: 2.3vw;
     color: #F0F0F0;
 `;
 const AdditionalLeftRectangle = styled.div`
-    width: 550px;
-    height: 600px;
+     width: 34rem;
+    height: 38rem;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
     position: relative;
     left: 0%;
     margin-top: 5%;
-    padding: 30px;
+    padding: 2%;
     color: #F0F0F0;
     margin-bottom: 7%;
 `;
@@ -181,13 +182,13 @@ const AdditionalLeftRectangle = styled.div`
 const AdditionalLeftText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 45px;
+    font-size: 2.3vw;
     color: #F0F0F0;
 `;
 const CooperationTitle = styled.h3`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 2.5vw;
     color: #FFFFFF;
     margin-top: 25%; /* Дополнительный отступ сверху */
     margin-left: auto; /* Установлено автоматическое выравнивание слева */
@@ -195,6 +196,7 @@ const CooperationTitle = styled.h3`
     width: 40%; /* Ширина контейнера установлена на 40% */
     text-align: left; /* Выравнивание текста по правому краю */
 `;
+
 
 
 const AboutUsDesktop = () => {
