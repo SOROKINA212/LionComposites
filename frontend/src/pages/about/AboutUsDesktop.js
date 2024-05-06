@@ -39,7 +39,8 @@ const Rectangle = styled.div`
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
-    margin-top: 7%;
+    margin-top: auto;
+    margin-bottom: 1%;
     padding: 3%;
 `;
 
@@ -50,7 +51,6 @@ const SmallRectangleLeft = styled.div`
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
-    margin-top: 1%;
     left: 0%;
     padding: 2%;
     margin-right: 2.5%;
@@ -92,13 +92,14 @@ const AddressText = styled.p`
     font-size: 1.6vw;
     color: #F0F0F0;
 `;
+
+
 const InfoRectangle = styled.div`
     width: 24%;
     height: 41%;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
-    margin-top: 1%;
     margin-left: 2.5%;
     padding: 2.2%;
     color: #F0F0F0;

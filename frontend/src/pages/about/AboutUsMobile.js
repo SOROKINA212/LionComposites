@@ -44,7 +44,7 @@ const SmallRectangleLeft = styled.div`
     margin-top: 15px;
     left: 0%;
     padding: 30px;
-
+    margin-bo
 `;
 
 
