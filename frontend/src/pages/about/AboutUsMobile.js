@@ -53,7 +53,7 @@ const SmallRectangleLeft = styled.div`
 const Heading = styled.h1`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 10vw;
+    font-size: 7vw;
     color: #F0F0F0;
     margin-bottom: 20px;
     text-align: center; /* Добавлено выравнивание текста по центру */
@@ -63,7 +63,7 @@ const Heading = styled.h1`
 const ContactTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 7vw;
+    font-size: 5vw;
     color: #F0F0F0;
     margin-top: 10%;
     margin-bottom: 2%;
@@ -71,7 +71,7 @@ const ContactTitle = styled.h2`
 const ContactList = styled.ul`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 4vw;
+    font-size: 3vw;
     color: #F0F0F0;
     list-style-type: disc;
     margin-top: 5%;
@@ -84,7 +84,7 @@ const ContactListItem = styled.li`
 const AddressTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 7vw;
+    font-size: 5vw;
     color: #F0F0F0;
     margin-top: 2%;
     margin-bottom: 2%;
@@ -94,7 +94,7 @@ const AddressTitle = styled.h2`
 const AddressText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 4vw;
+    font-size: 3vw;
     color: #F0F0F0;
 `;
 const InfoRectangle = styled.div`
@@ -111,7 +111,7 @@ const InfoRectangle = styled.div`
 const InfoTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Стиль Medium */
-    font-size: 7vw;
+    font-size: 5vw;
     color: #F0F0F0;
     margin-bottom: 3%;
 `;
@@ -119,7 +119,7 @@ const InfoTitle = styled.h2`
 const InfoText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300; /* Стиль Lighter */
-    font-size: 4vw;
+    font-size: 3vw;
     margin-top: 3%;
     text-align: center;
     margin-bottom: 3%;
@@ -140,7 +140,7 @@ const AboutRectangle = styled.div`
 const AboutTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Стиль Medium */
-    font-size: 7vw;
+    font-size: 5vw;
     margin-bottom: 20px; /* Отступ снизу */
     color: #F0F0F0;
 `;
@@ -148,7 +148,7 @@ const AboutTitle = styled.h2`
 const AboutText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 200; /* Стиль Lighter */
-    font-size: 4vw;
+    font-size: 3vw;
     color: #F0F0F0;
     text-align: justify;
     margin-bottom: 1%;
@@ -157,8 +157,8 @@ const AboutText = styled.p`
 const AdditionalTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 7vw;
-    margin-top: 25%;
+    font-size: 5vw;
+    margin-top: 15%;
     position: relative; /* Изменено на absolute */
     left: 0%; /* Выравнивание по верхнему краю */
     color: #F0F0F0;
@@ -180,7 +180,7 @@ const AdditionalRectangle = styled.div`
 const AdditionalText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 4vw;
+    font-size: 3vw;
     color: #F0F0F0;
 `;
 const AdditionalLeftRectangle = styled.div`
@@ -200,13 +200,13 @@ const AdditionalLeftRectangle = styled.div`
 const AdditionalLeftText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 4vw;
+    font-size: 3vw;
     color: #F0F0F0;
 `;
 const CooperationTitle = styled.h3`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 7vw;
+    font-size: 5vw;
     color: #FFFFFF;
     margin-top: 5%; /* Дополнительный отступ сверху */
 `;
