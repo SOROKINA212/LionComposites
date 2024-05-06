@@ -15,6 +15,7 @@ const PageContainer = styled.div`
 
 const ContentContainer = styled.div`
     max-width: 70%;
+    height: 100%;
     margin: 0 auto;
     padding: 2%;
     display: flex;
@@ -23,6 +24,14 @@ const ContentContainer = styled.div`
     background-color: #1A1A1A;
 `;
 
+const InfoContainer = styled.div`
+     max-width: 100%;
+     height: 1000px;
+    padding: 5%;
+    display: flex;
+     flex-wrap: wrap;
+    background-color: #1A1A1A;
+`;
 
 const Rectangle = styled.div`
     position: relative;
@@ -35,8 +44,8 @@ const Rectangle = styled.div`
 `;
 
 const SmallRectangleLeft = styled.div`
-    width: 20em;
-    height: 25em;
+    width: 24%;
+    height: 41.5%;
     position: relative;
     background-color: #353333;
     border-radius: 40px;
@@ -47,15 +56,12 @@ const SmallRectangleLeft = styled.div`
     margin-right: 2.5%;
 `;
 
-
-
-
 const Heading = styled.h1`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
     font-size: 4vw;
     color: #F0F0F0;
-    margin-bottom: 20px;
+    margin-bottom: 1%;
     text-align: center; /* Добавлено выравнивание текста по центру */
     width: 100%; /* Добавлено, чтобы текст занимал всю ширину контейнера */
 `;
@@ -87,8 +93,8 @@ const AddressText = styled.p`
     color: #F0F0F0;
 `;
 const InfoRectangle = styled.div`
-    width: 20rem;
-    height: 24.7rem;
+    width: 24%;
+    height: 41%;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 10px 20.3px rgba(0, 0, 0, 0.25);
@@ -141,19 +147,19 @@ const AdditionalTitle = styled.h2`
     font-size: 2.5vw;
     margin-top: 25%;
     position: relative; /* Изменено на absolute */
-    margin-left: 10%; /* Выравнивание по левому краю */
+    margin-left: 8%; /* Выравнивание по левому краю */
     left: -5%; /* Выравнивание по верхнему краю */
     color: #F0F0F0;
 `;
 
 const AdditionalRectangle = styled.div`
-    width: 34rem;
-    height: 38rem;
+    width: 45%;
+    height: 50%;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
     position: relative;
-    left: 9%;
+    left: 3%;
     margin-top: 5%; /* Размещаем прямоугольник под надписью с дополнительным отступом 30px */
     padding: 2%;
     color: #F0F0F0;
@@ -166,8 +172,8 @@ const AdditionalText = styled.p`
     color: #F0F0F0;
 `;
 const AdditionalLeftRectangle = styled.div`
-     width: 34rem;
-    height: 38rem;
+    width: 45%;
+    height: 50%;
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 11px 28.7px rgba(0, 0, 0, 0.25);
@@ -177,6 +183,7 @@ const AdditionalLeftRectangle = styled.div`
     padding: 2%;
     color: #F0F0F0;
     margin-bottom: 7%;
+    display: flex;
 `;
 
 const AdditionalLeftText = styled.p`
@@ -185,19 +192,32 @@ const AdditionalLeftText = styled.p`
     font-size: 2.3vw;
     color: #F0F0F0;
 `;
-const CooperationTitle = styled.h3`
+const CooperationTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500;
     font-size: 2.5vw;
     color: #FFFFFF;
     margin-top: 25%; /* Дополнительный отступ сверху */
     margin-left: auto; /* Установлено автоматическое выравнивание слева */
-    margin-right: 0%; /* Добавлен отступ справа */
-    width: 40%; /* Ширина контейнера установлена на 40% */
+    margin-right: -10%; /* Добавлен отступ справа */
+    width: 50%; /* Ширина контейнера установлена на 40% */
     text-align: left; /* Выравнивание текста по правому краю */
 `;
 
+const ContentBox = styled.div`
+    max-width: 100%;
+    padding: 5%;
+    display: flex;
+    background-color: #1A1A1A;
+    margin-top: 15%;
+`;
 
+const ContentBoxBot = styled.div`
+    max-width: 100%;
+    padding: 5%;
+    display: flex;
+    background-color: #1A1A1A;
+`;
 
 const AboutUsDesktop = () => {
 
@@ -207,6 +227,7 @@ const AboutUsDesktop = () => {
       <SubHeader />
       <ContentContainer>
         <Heading>Где мы находимся?</Heading>
+        <InfoContainer>
         <Rectangle>
           <AddressTitle>Адрес</AddressTitle>
           <AddressText>ул. Вавилова 68/2, г. Ростов-на-Дону (магазин находится на территории Базы "РОСАВТОМАТИК"), Ростовская область, Россия</AddressText>
@@ -234,6 +255,8 @@ const AboutUsDesktop = () => {
             полиэфирные основы Гелькоут и Топкоут.
           </AboutText>
         </AboutRectangle>
+        </InfoContainer>
+        <ContentBox>
         <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
         <AdditionalRectangle>
           <AdditionalText>
@@ -241,12 +264,15 @@ const AboutUsDesktop = () => {
             Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
           </AdditionalText>
         </AdditionalRectangle>
+        </ContentBox>
+        <ContentBoxBot>
         <AdditionalLeftRectangle>
           <AdditionalLeftText>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
           </AdditionalLeftText>
         </AdditionalLeftRectangle>
         <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
+        </ContentBoxBot>
       </ContentContainer>
       <Footer />
     </PageContainer>
