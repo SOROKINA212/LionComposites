@@ -13,11 +13,11 @@ const ReviewBox = styled.div`
     background-color: #353333;
     border-radius: 40px;
     box-shadow: 0px 15px 29.4px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 1.5%;
+    margin-bottom: 2%;
     align-self: ${props => props.isEven ? 'flex-end' : 'flex-start'};
-    width: 753px;
-    height: 468px;
+    width: 50%;
+    height: 40%;
     margin-left: ${props => props.isEven ? '0' : '15%'};
     margin-right: ${props => props.isEven ? '15%' : '0'};
 `;
@@ -25,14 +25,14 @@ const ReviewBox = styled.div`
 const ReviewUserName = styled.h4`
     color: white;
     margin-bottom: 10px;
-    font-size: 36px; /* Устанавливаем размер шрифта */
+    font-size: 3vw; /* Устанавливаем размер шрифта */
     font-family: 'Montserrat', sans-serif; /* Задаем шрифт Montserrat */
     font-weight: 600;
 `;
 
 const ReviewContent = styled.p`
     color: white;
-     font-size: 30px; /* Устанавливаем размер шрифта */
+     font-size: 2.5vw; /* Устанавливаем размер шрифта */
     font-family: 'Montserrat', sans-serif; /* Задаем шрифт Montserrat */
     font-weight: 400;
 `;
