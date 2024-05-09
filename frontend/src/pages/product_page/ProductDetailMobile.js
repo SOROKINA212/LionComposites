@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
-import Review from './components/Review';
+import Review from './components/ReviewMobile';
 import { useAuth } from '../../AuthProvider';
 import ReviewForm from './components/ReviewForm';
 import Footer from './components/Footer';
@@ -19,7 +19,7 @@ const PageContainer = styled.div`
 const Container = styled.div`
     max-width: 70%;
     margin: 0px auto 20px;
-    padding: 20px;
+    padding: 2%;
     display: flex;
     background-color: #1A1A1A;
 `;
@@ -27,11 +27,12 @@ const Container = styled.div`
 const ProductNameContainer = styled.div`
     max-width: 70%;
     margin: 0px auto;
+    margin-left: 17%;
 `;
 
 const ProductImageContainer = styled.div`
     flex: 1;
-    margin-right: 100px; /* Увеличиваем интервал между изображением и характеристиками */
+    margin-right: 9%; /* Увеличиваем интервал между изображением и характеристиками */
     width: 100%;
 `;
 
@@ -43,26 +44,24 @@ const ProductInfoContainer = styled.div`
 
 const ProductInfo = styled.div`
     flex: 1;
-    margin-right: 60px; /* Увеличиваем интервал между изображением и характеристиками */
+    margin-right: 6%; /* Увеличиваем интервал между изображением и характеристиками */
 `;
 
 const ProductImage = styled.img`
-    width: 100%;
-    height: auto;
     max-width: 700px; /* Увеличиваем максимальную ширину изображения */
-    height: 600px; /* Устанавливаем автоматическую высоту */
-    width: 500px;
-    margin-right: 40px; /* Добавляем отступ справа для создания интервала */
-    margin-bottom: 40px; /* Увеличиваем интервал под изображением */
+    height: 85%; /* Устанавливаем автоматическую высоту */
+    width: 100%;
+    margin-right: 4%; /* Добавляем отступ справа для создания интервала */
+    margin-bottom: 17%; /* Увеличиваем интервал под изображением */
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
-    border-radius: 47px;
+    border-radius: 20px;
 `;
 
 const ProductName = styled.h1`
     font-family: Montserrat, sans-serif;
     font-weight: 400; /* Regular */
-    font-size: 64px;
-    margin-bottom: 20px;
+    font-size: 6vw;
+    margin-bottom: 2%;
     color: #F0F0F0;
 `;
 
@@ -70,21 +69,21 @@ const ProductName = styled.h1`
 const Characteristics = styled.ul`
     font-family: Montserrat, sans-serif;
     font-weight: 300; /* Light стиль */
-    font-size: 30px;
+    font-size: 2.5vw;
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 2%;
     color: #F0F0F0;
 `;
 
 const ProductDescription = styled.div`
-    margin-top: 40px;
+    margin-top: 4%;
     width: 70%;
     height:auto;
     margin: 0px auto 20px;
-    padding: 20px;
+    padding: 1.5%;
     background-color: #353333;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
-    border-radius: 47px;
+    border-radius: 20px;
     position: relative;
 `;
 
@@ -92,7 +91,7 @@ const ProductDescription = styled.div`
 const Description = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 2.7vw;
     margin-bottom: 5%;
     color: #F0F0F0;
 `;
@@ -100,17 +99,17 @@ const Description = styled.p`
 const Desc = styled.h3`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 48px;
+    font-size: 4vw;
     color: #F0F0F0;
     margin-top: 1%;
-    margin-bottom: 20px; /* Добавляем отступ снизу */
+    margin-bottom: 2%; /* Добавляем отступ снизу */
     text-align: center;
 `;
 
 const Price = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 36px;
+    font-size: 2.8vw;
     color: #F0F0F0;
     border-bottom: 1px solid #FFFFFF;
 `;
@@ -118,21 +117,21 @@ const Price = styled.p`
 const Button = styled.button`
     font-family: Montserrat, sans-serif;
     font-weight: 600;
-    font-size: 24px;
-    padding: 10px 20px;
+    font-size: 2.8vw;
+    padding: 0.7% 2%;
     background-color: #F0F0F0;
     color: #1A1A1A;
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 2.8vw;
     border: none;
     cursor: pointer;
     position: absolute; /* Устанавливаем абсолютное позиционирование */
-    bottom: 20px; /* Устанавливаем отступ от нижнего края */
-    right: 20px; /* Устанавливаем отступ от правого края */
-    margin-top: 60px;
+    bottom: 4%; /* Устанавливаем отступ от нижнего края */
+    right: 2%; /* Устанавливаем отступ от правого края */
+    margin-top: 10%;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
-    border-radius: 16px
+    border-radius: 7px
 `;
 
 const ButtonContainer = styled.div`
@@ -153,10 +152,10 @@ const FixedHeader = styled(Header)`
 const Reviews = styled.h3`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 60px;
+    font-size: 4.5vw;
     color: #F0F0F0;
-    margin-top: 7%;
-    margin-bottom: 20px; /* Добавляем отступ снизу */
+    margin-top: 5%;
+    margin-bottom: 3%; /* Добавляем отступ снизу */
     text-align: center;
 `;
 

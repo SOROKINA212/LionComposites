@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const ReviewContainer = styled.div`
-    margin-top: 20px;
+    margin-top: 2%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -24,15 +24,15 @@ const ReviewBox = styled.div`
 
 const ReviewUserName = styled.h4`
     color: white;
-    margin-bottom: 10px;
-    font-size: 3vw; /* Устанавливаем размер шрифта */
+    margin-bottom: 1%;
+    font-size: 2vw; /* Устанавливаем размер шрифта */
     font-family: 'Montserrat', sans-serif; /* Задаем шрифт Montserrat */
     font-weight: 600;
 `;
 
 const ReviewContent = styled.p`
     color: white;
-     font-size: 2.5vw; /* Устанавливаем размер шрифта */
+     font-size: 1.5vw; /* Устанавливаем размер шрифта */
     font-family: 'Montserrat', sans-serif; /* Задаем шрифт Montserrat */
     font-weight: 400;
 `;
