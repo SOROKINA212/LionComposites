@@ -6,7 +6,7 @@ import Header from './components/Header';
 import SubHeader from './components/SubHeader';
 import Review from './components/ReviewMobile';
 import { useAuth } from '../../AuthProvider';
-import ReviewForm from './components/ReviewForm';
+import ReviewForm from './components/ReviewFormMobile';
 import Footer from './components/Footer';
 import { useMediaQuery } from 'react-responsive';
 
@@ -127,11 +127,11 @@ const Button = styled.button`
     border: none;
     cursor: pointer;
     position: absolute; /* Устанавливаем абсолютное позиционирование */
-    bottom: 4%; /* Устанавливаем отступ от нижнего края */
-    right: 2%; /* Устанавливаем отступ от правого края */
+    bottom: 5%; /* Устанавливаем отступ от нижнего края */
+    right: 5%; /* Устанавливаем отступ от правого края */
     margin-top: 10%;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
-    border-radius: 7px
+    border-radius: 5px
 `;
 
 const ButtonContainer = styled.div`
@@ -164,13 +164,13 @@ const AddReviewButton = styled.button`
     /* Отображать кнопку только для авторизованных пользователей */
     font-family: Montserrat, sans-serif;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 4vw;
     padding: 10px 20px;
     background-color: #F0F0F0;
     color: #1A1A1A;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 2%;
 `;
 
 
