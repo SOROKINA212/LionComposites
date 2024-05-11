@@ -52,3 +52,30 @@ class Review(models.Model):
 
     class Meta:
         app_label = 'product_page'
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='cart')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='cart_items')
+    quantity = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        app_label = 'product_page'
+        unique_together = ('user', 'product')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"
+
+
+
+class PresentationsAndDocs(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    file = models.FileField(upload_to='presentations_and_docs/')
+    image = models.ImageField(upload_to='presentations_and_docs_images/', null=True, blank=True)
+
+    class Meta:
+        app_label = 'product_page'
+
+    def __str__(self):
+        return self.name

@@ -9,7 +9,7 @@ class SubHeader extends React.Component {
         <nav>
           <ul>
             <li><a href="/delivery">Доставка</a></li>
-            <li><a href="/">Презентации и документы</a></li>
+            <li><a href="/presentations">Презентации и документы</a></li>
             <li><a href="/about">О нас</a></li>
           </ul>
         </nav>

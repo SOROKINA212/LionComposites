@@ -1,5 +1,3 @@
-// LoginForm.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
@@ -19,25 +17,19 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await axios.post(`http://localhost:8000/api/login/`, userData);
-    const { token, user } = response.data;
-
-    // Сохраняем токен в cookie
-    document.cookie = `token=${token}; path=/`; // Путь '/' означает, что cookie будет доступен на всем сайте
-
-    setUser(user); // Здесь вы сохраняете пользователя из ответа
-
-    navigate('/');
-
-    console.log('Authentication successful');
-    console.log('Current user:', user);
-  } catch (error) {
-    console.error('Authentication failed:', error);
-  }
-};
-
+    e.preventDefault();
+    try {
+      const response = await axios.post(`http://localhost:8000/api/login/`, userData);
+      const { token, user } = response.data;
+      localStorage.setItem('token', token); // Сохраняем токен в localStorage
+      setUser(user);
+      navigate('/');
+      console.log('Authentication successful');
+      console.log('Current user:', user);
+    } catch (error) {
+      console.error('Authentication failed:', error);
+    }
+  };
 
   return (
     <div>

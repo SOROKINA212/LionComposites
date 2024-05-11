@@ -19,7 +19,7 @@ const ProductContent = styled.div`
 const CategoryContainer = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 `;
 
 const CategoryTitle = styled.div`

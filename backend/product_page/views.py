@@ -2,24 +2,37 @@
 
 from rest_framework import generics
 import logging
+from django.db.models import Q
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Product, Category, Review, CustomUser  # Импортируем модель Review
-from .serializers import ProductSerializer, CategorySerializer, CustomUserSerializer, ReviewSerializer  # Импортируем сериализатор отзывов
+from .models import Product, Category, Review, CustomUser, Cart, PresentationsAndDocs  # Импортируем модель Review
+from .serializers import ProductSerializer, CategorySerializer, CustomUserSerializer, ReviewSerializer, CartSerializer, PresentationsAndDocsSerializer  # Импортируем сериализатор отзывов
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
 class ProductList(generics.ListAPIView):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        search_query = self.request.query_params.get('search', None)
+        if search_query:
+            queryset = queryset.filter(
+                Q(name__icontains=search_query) |
+                Q(description__icontains=search_query) |
+                Q(category__name__icontains=search_query)
+            )
+        return queryset
 
 class ProductDetail(generics.RetrieveAPIView):
     queryset = Product.objects.all()
@@ -28,6 +41,13 @@ class ProductDetail(generics.RetrieveAPIView):
 class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+        search_query = self.request.query_params.get('search', None)
+        if search_query:
+            queryset = queryset.filter(name__icontains=search_query)
+        return queryset
 
 class CategoryDetail(generics.RetrieveAPIView):
     queryset = Category.objects.all()
@@ -132,3 +152,93 @@ class UserDetail(APIView):
         user = get_object_or_404(CustomUser, id=user_id)
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
+
+
+class CartList(generics.ListCreateAPIView):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class CartDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+
+class PresentationsAndDocsList(generics.ListCreateAPIView):
+    queryset = PresentationsAndDocs.objects.all()
+    serializer_class = PresentationsAndDocsSerializer
+
+class PresentationsAndDocsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PresentationsAndDocs.objects.all()
+    serializer_class = PresentationsAndDocsSerializer
+
+
+
+class CreateOrder(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        cart_items = Cart.objects.filter(user=user)
+        delivery_method = request.data.get('delivery_method')
+        delivery_address = request.data.get('delivery_address')
+
+        order_details = []
+        total_price = 0
+
+        for item in cart_items:
+            order_details.append({
+                'product_name': item.product.name,
+                'quantity': item.quantity,
+                'price': item.product.cost,
+            })
+            total_price += item.quantity * item.product.cost
+
+        order_info = {
+            'user': user.username,
+            'items': order_details,
+            'total_price': total_price,
+            'delivery_method': delivery_method,
+        }
+
+        if delivery_method == 'delivery':
+            order_info['delivery_address'] = delivery_address
+
+        # 发送电子邮件
+        subject = 'New Order Received'
+        message = f"A new order has been placed:\n\n{order_info}"
+        from_email = settings.EMAIL_HOST_USER
+        to_email = settings.ADMIN_EMAIL
+        send_mail(subject, message, from_email, [to_email], fail_silently=False)
+
+        # 清空购物车
+        cart_items.delete()
+
+        return Response(order_info, status=status.HTTP_201_CREATED)

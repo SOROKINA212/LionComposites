@@ -138,3 +138,11 @@ CORS_ALLOW_ALL_ORIGINS = True  # Разрешить все источники, �
 MEDIA_URL = '/media/'  # URL, по которому медиафайлы будут доступны
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'serge.nevskiy@yandex.ru'
+EMAIL_HOST_PASSWORD = 'ubtxukusmvnprxga'
+ADMIN_EMAIL = 'ivank2977@gmail.com'

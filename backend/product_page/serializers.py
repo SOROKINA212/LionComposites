@@ -1,6 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Product, Category, CustomUser, Review
+from .models import Product, Category, CustomUser, Review, Cart, PresentationsAndDocs
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,3 +44,27 @@ class ReviewSerializer(serializers.ModelSerializer):
         # Создаем отзыв, связанный с этим пользователем
         review = Review.objects.create(user_id=user_id, **validated_data)
         return review
+
+
+class CartSerializer(serializers.ModelSerializer):
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+
+    class Meta:
+        model = Cart
+        fields = ['id', 'user', 'product', 'quantity']
+
+    def create(self, validated_data):
+        product = validated_data.pop('product')
+        cart_item = Cart.objects.create(product=product, **validated_data)
+        return cart_item
+
+    def update(self, instance, validated_data):
+        instance.quantity = validated_data.get('quantity', instance.quantity)
+        instance.save()
+        return instance
+
+
+class PresentationsAndDocsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PresentationsAndDocs
+        fields = ['id', 'name', 'description', 'file', 'image']

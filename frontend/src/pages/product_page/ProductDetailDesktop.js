@@ -178,8 +178,9 @@ const AddReviewButton = styled.button`
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { user, setUser } = useAuth(); // Проверьте, правильно ли используется useAuth
+  const { user, setUser } = useAuth();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -195,34 +196,50 @@ const ProductDetail = () => {
     fetchProduct();
   }, [id]);
 
-useEffect(() => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    // Здесь вы можете выполнить запрос на сервер для получения информации о пользователе
-    // Если запрос успешен, установите пользователя в состояние
-    axios.get(`http://localhost:8000/api/current_user/`, {
+  const addToCart = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const userId = user.id;
+    await axios.post(`http://localhost:8000/api/cart/`, {
+      product: product.id,
+      quantity: 1,
+      user: userId
+    }, {
       headers: {
         Authorization: `Token ${token}`
       }
-    })
-    .then(response => {
-      const user = response.data;
-      setUser({ isAuthenticated: true, username: user.username, id: user.id }); // Установка пользователя из полученных данных
-      console.log('User ID:', user.id); // Вывод id пользователя в консоль
-    })
-    .catch(error => {
-      console.error('Error fetching current user:', error);
-      setUser(null);
     });
-  } else {
-    setUser(null);
+    console.log('Product added to cart');
+  } catch (error) {
+    console.error('Error adding product to cart:', error);
   }
-}, []);
+};
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get(`http://localhost:8000/api/current_user/`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+      .then(response => {
+        const user = response.data;
+        setUser({ isAuthenticated: true, username: user.username, id: user.id });
+        console.log('User ID:', user.id);
+      })
+      .catch(error => {
+        console.error('Error fetching current user:', error);
+        setUser(null);
+      });
+    } else {
+      setUser(null);
+    }
+  }, []);
 
   if (!product) {
     return <div>Loading...</div>;
   }
-
   // Разделение характеристик товара
   const characteristicsList = product.properties.split('|');
 
@@ -252,7 +269,7 @@ useEffect(() => {
                  <Description>{product.description}</Description>
                  <Price>Цена: {product.cost} руб.</Price>
                  <ButtonContainer>
-                 <Button>В корзину</Button>
+                 <Button onClick={addToCart}>В корзину</Button>
                  </ButtonContainer>
             </ProductDescription>
             <Reviews> Отзывы </Reviews>

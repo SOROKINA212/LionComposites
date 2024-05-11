@@ -1,0 +1,19 @@
+/* Slider.css */
+
+.slider {
+  width: 100%;
+  overflow: hidden; /* Скрываем дополнительные слайды */
+}
+
+.slides-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Плавное перемещение слайдов */
+  border-radius: 40px;
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+}

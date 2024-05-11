@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12a244d9-d8a4-4bf3-971b-563543ea3864" name="Changes" comment="Add new pages" />
+    <list default="true" id="12a244d9-d8a4-4bf3-971b-563543ea3864" name="Changes" comment="Add new pages">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/product_page/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/product_page/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/product_page/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/product_page/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/product_page/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/product_page/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/product_page/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/product_page/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/product_page/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/product_page/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,20 +43,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;H:/LionComposites/frontend/src/pages/product_page/components&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "H:/LionComposites/frontend/src/pages/OrderPage",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="H:\LionComposites\frontend\src\pages\product_page\components" />
+      <recent name="H:\LionComposites\frontend\src\pages\OrderPage" />
+      <recent name="H:\LionComposites\frontend\src\pages\AllProducts" />
       <recent name="H:\LionComposites\frontend\src\pages\about\components" />
-      <recent name="H:\LionComposites\frontend\src\pages\delivery_page" />
-      <recent name="H:\LionComposites\frontend\src\pages\about" />
+      <recent name="H:\LionComposites\frontend\src\pages\delivery_page\components" />
+      <recent name="H:\LionComposites\frontend\src\pages\ProductCart\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\LionComposites\frontend\src\pages\delivery_page" />
