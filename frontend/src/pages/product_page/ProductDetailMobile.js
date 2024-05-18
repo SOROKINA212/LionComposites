@@ -129,7 +129,7 @@ const Button = styled.button`
     position: absolute; /* Устанавливаем абсолютное позиционирование */
     bottom: 5%; /* Устанавливаем отступ от нижнего края */
     right: 5%; /* Устанавливаем отступ от правого края */
-    margin-top: 10%;
+    margin-top: 15%;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
     border-radius: 5px
 `;
@@ -137,7 +137,7 @@ const Button = styled.button`
 const ButtonContainer = styled.div`
     width: 100%;
     background-color: black;
-    margin-top: 8%;
+    margin-top: 10%;
 `;
 
 

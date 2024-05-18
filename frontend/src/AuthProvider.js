@@ -19,6 +19,7 @@ const getUserIdFromToken = (token) => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -47,6 +48,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Logout error:', error);
     }
   };
+
 
   if (loading) {
     return <div>Loading...</div>;
