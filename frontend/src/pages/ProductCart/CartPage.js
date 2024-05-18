@@ -120,36 +120,38 @@ const CartPage = () => {
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8000/api/cart/`, {
-          headers: {
-            Authorization: `Token ${token}`
-          }
-        });
-        const cartData = response.data;
-        const cartItemsWithProducts = await Promise.all(
-          cartData.map(async (item) => {
-            const productResponse = await axios.get(`http://localhost:8000/api/products/${item.product}/`, {
-              headers: {
-                Authorization: `Token ${token}`
-              }
-            });
-            return { ...item, product: productResponse.data };
-          })
-        );
-        setCartItems(cartItemsWithProducts);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      }
-    };
 
-    if (user) {
-      fetchCartItems();
+ useEffect(() => {
+  const fetchCartItems = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://localhost:8000/api/cart/`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      const cartData = response.data;
+      const cartItemsWithProducts = await Promise.all(
+        cartData.map(async (item) => {
+          const productResponse = await axios.get(`http://localhost:8000/api/products/${item.product}/`, {
+            headers: {
+              Authorization: `Token ${token}`
+            }
+          });
+          return { ...item, product: productResponse.data };
+        })
+      );
+      setCartItems(cartItemsWithProducts);
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
     }
-  }, [user]);
+  };
+
+  if (user) {
+    fetchCartItems();
+  }
+}, [user]);
+
 
   const removeFromCart = async (itemId) => {
     try {
@@ -166,24 +168,24 @@ const CartPage = () => {
   };
 
   const updateCartItem = async (itemId, quantity) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.patch(`http://localhost:8000/api/cart/${itemId}/`, {
-        quantity
-      }, {
-        headers: {
-          Authorization: `Token ${token}`
-        }
-      });
-      setCartItems(
-        cartItems.map(item =>
-          item.id === itemId ? { ...item, quantity } : item
-        )
-      );
-    } catch (error) {
-      console.error('Error updating cart item:', error);
-    }
-  };
+  try {
+    const token = localStorage.getItem('token');
+    await axios.patch(`http://localhost:8000/api/cart/${itemId}/`, {
+      quantity
+    }, {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    });
+    setCartItems(
+      cartItems.map(item =>
+        item.id === itemId ? { ...item, quantity } : item
+      )
+    );
+  } catch (error) {
+    console.error('Error updating cart item:', error);
+  }
+};
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + (item.quantity * item.product.cost), 0);
@@ -210,13 +212,13 @@ const CartPage = () => {
                 </div>
               </ProductInfo>
               <Quantity>
-                <QuantityInput
-                  type="number"
-                  min="1"
-                  value={item.quantity}
-                  onChange={(e) => updateCartItem(item.id, e.target.value)}
-                />
-              </Quantity>
+      <QuantityInput
+        type="number"
+        min="1"
+        value={item.quantity}
+        onChange={(e) => updateCartItem(item.id, e.target.value)}
+      />
+    </Quantity>
               <TotalPrice>Итого: {(item.quantity * item.product.cost).toFixed(2)} руб.</TotalPrice>
               <RemoveButton onClick={() => removeFromCart(item.id)}>Удалить</RemoveButton>
             </CartItem>

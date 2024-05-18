@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../../AuthProvider';
 import styled from 'styled-components';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
@@ -28,9 +29,20 @@ const ProductListContainer = styled.div`
   margin-bottom: 5%;
 `;
 
-const ProductCard = styled(Link)`
+const ProductLink = styled(Link)`
+  height: 330px;
+  width: 100%;
+  padding: 2.2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+
+`;
+
+const ProductCard = styled.div`
   background-color: #353333;
-  height: 320px;
+  height: 420px;
   border-radius: 20px;
   padding: 2.2%;
   display: flex;
@@ -43,7 +55,7 @@ const ProductCard = styled(Link)`
 
 const ProductImage = styled.img`
   width: 100%;
-  height: 65%;
+  height: 80%;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 2%;
@@ -54,7 +66,14 @@ const ProductName = styled.h3`
   font-weight: 400;
   font-size: 1.3vw;
   color: #F0F0F0;
-  margin-bottom: 0%;
+  margin-bottom: 2%;
+`;
+const PriceContainer = styled.div`
+  margin-top: 0%; // Это свойство будет "толкать" элемент вниз
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
 `;
 
 const ProductPrice = styled.p`
@@ -62,7 +81,53 @@ const ProductPrice = styled.p`
   font-weight: 400;
   font-size: 1.2vw;
   color: #F0F0F0;
-  margin-top: 2%;
+  position: absolute;
+  margin: 0;
+  margin-left: 1%;
+  margin-top: 1%;
+`;
+
+const AddToCartButton = styled.button`
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 1.1vw;
+  background-color: #F0F0F0;
+  color: #1A1A1A;
+  border: none;
+  border-radius: 5px;
+  padding: 2% 4%;
+  cursor: pointer;
+  margin-left: 66%; // Добавляем отступ слева от кнопки
+  margin-top: 3%;
+
+   &:hover {
+    background-color: #D0D0D0; // Изменяем цвет фона при наведении
+    color: #1A1A1A; // Изменяем цвет текста при наведении
+  }
+`;
+
+const CartQuantityContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CartQuantity = styled.span`
+  font-size: 1.1vw;
+  margin: 0 10px;
+`;
+
+const DecrementButton = styled.button`
+  font-size: 1.1vw;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+const IncrementButton = styled.button`
+  font-size: 1.1vw;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;
 
 const FilterContainer = styled.div`
@@ -91,6 +156,11 @@ const ProductListPage = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [cart, setCart] = useState([]);
+  const { user, setUser } = useAuth();
+  const [isAddToCartClicked, setIsAddToCartClicked] = useState(false);
+  const [cartQuantity, setCartQuantity] = useState(1);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -115,6 +185,118 @@ const ProductListPage = () => {
   const handleSortOrder = (order) => {
     setSortOrder(order);
   };
+
+const addToCart = async (product) => {
+  try {
+    const token = localStorage.getItem('token');
+    const userId = user.id;
+    const existingCartItem = cartItems.find(item => item.product.id === product.id);
+
+    if (existingCartItem) {
+      await axios.patch(`http://localhost:8000/api/cart/${existingCartItem.id}/`, {
+        quantity: existingCartItem.quantity + 1
+      }, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      setCartItems(
+        cartItems.map(item =>
+          item.id === existingCartItem.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      const response = await axios.post(`http://localhost:8000/api/cart/`, {
+        product: product.id,
+        quantity: 1,
+        user: userId
+      }, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      setCartItems([...cartItems, { ...response.data, product }]);
+    }
+    setIsAddToCartClicked(true);
+    console.log('Product added to cart');
+  } catch (error) {
+    console.error('Error adding product to cart:', error);
+  }
+};
+
+useEffect(() => {
+  const fetchCartItems = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://localhost:8000/api/cart/`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      const cartData = response.data;
+      const cartItemsWithProducts = await Promise.all(
+        cartData.map(async (item) => {
+          const productResponse = await axios.get(`http://localhost:8000/api/products/${item.product}/`, {
+            headers: {
+              Authorization: `Token ${token}`
+            }
+          });
+          return { ...item, product: productResponse.data };
+        })
+      );
+      setCartItems(cartItemsWithProducts);
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
+    }
+  };
+
+  if (user) {
+    fetchCartItems();
+  }
+}, [user]);
+
+
+const incrementCartQuantity = async (item) => {
+  try {
+    const token = localStorage.getItem('token');
+    await axios.patch(`http://localhost:8000/api/cart/${item.id}/`, {
+      quantity: item.quantity + 1
+    }, {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    });
+    setCartItems(
+      cartItems.map(i =>
+        i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+      )
+    );
+  } catch (error) {
+    console.error('Error incrementing cart quantity:', error);
+  }
+};
+
+const decrementCartQuantity = async (item) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (item.quantity > 1) {
+      await axios.patch(`http://localhost:8000/api/cart/${item.id}/`, {
+        quantity: item.quantity - 1
+      }, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      setCartItems(
+        cartItems.map(i =>
+          i.id === item.id ? { ...i, quantity: i.quantity - 1 } : i
+        )
+      );
+    }
+  } catch (error) {
+    console.error('Error decrementing cart quantity:', error);
+  }
+};
 
   let filteredProducts = products.filter((product) =>
     selectedCategory ? product.category === selectedCategory : true
@@ -161,10 +343,30 @@ const ProductListPage = () => {
       </FilterContainer>
       <ProductListContainer>
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} to={`/product/${product.id}`}>
+          <ProductCard>
+          <ProductLink key={product.id} to={`/product/${product.id}`}>
             <ProductImage src={product.image} alt={product.name} />
             <ProductName>{product.name}</ProductName>
-            <ProductPrice>Цена: {product.cost} руб.</ProductPrice>
+        </ProductLink>
+            <PriceContainer>
+    <ProductPrice>Цена: {product.cost} руб.</ProductPrice>
+    <AddToCartButton
+    onClick={() => {
+      addToCart(product);
+      setIsAddToCartClicked(true);
+    }}
+  >
+    {cartItems.find(item => item.product.id === product.id) ? (
+      <CartQuantityContainer>
+        <DecrementButton onClick={() => decrementCartQuantity(cartItems.find(item => item.product.id === product.id))}>-</DecrementButton>
+        <CartQuantity>{cartItems.find(item => item.product.id === product.id).quantity}</CartQuantity>
+        <IncrementButton onClick={() => incrementCartQuantity(cartItems.find(item => item.product.id === product.id))}>+</IncrementButton>
+      </CartQuantityContainer>
+    ) : (
+      'В корзину'
+    )}
+  </AddToCartButton>
+  </PriceContainer>
           </ProductCard>
         ))}
       </ProductListContainer>
