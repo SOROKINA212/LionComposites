@@ -4,119 +4,40 @@ import styled from 'styled-components';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
 import Footer from './components/Footer';
+import { useMediaQuery } from 'react-responsive';
+import PresentationsAndDocsPageDesktop from './PresentationsAndDocsPageDesktop';
+import PresentationsAndDocsPageMobile from './PresentationsAndDocsPageMobile';
 
-const PageContainer = styled.div`
-  background-color: #1A1A1A;
-  padding: 20px;
-`;
-
-const PresentationsAndDocsContainer = styled.div`
-  max-width: 80%;
-  margin: 0 auto;
-  background-color: #353333;
-  border-radius: 20px;
-  padding: 20px;
-`;
-
-const PresentationItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #F0F0F0;
-`;
-
-const PresentationInfo = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const PresentationImage = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  margin-right: 20px;
-`;
-
-const PresentationName = styled.h3`
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #F0F0F0;
-`;
-
-const PresentationDescription = styled.p`
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #F0F0F0;
-`;
-
-const ViewButton = styled.a`
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  background-color: #F0F0F0;
-  color: #1A1A1A;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  text-decoration: none;
-  cursor: pointer;
-`;
 
 const PresentationsAndDocsPage = () => {
-  const [presentationsAndDocs, setPresentationsAndDocs] = useState([]);
+ const isDesktop = useMediaQuery({
+    query: "(min-width: 1224px)"
+  });
 
-  useEffect(() => {
-    const fetchPresentationsAndDocs = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8000/api/presentations-and-docs/`, {
-          headers: {
-            Authorization: `Token ${token}`
-          }
-        });
-        setPresentationsAndDocs(response.data);
-      } catch (error) {
-        console.error('Error fetching presentations and docs:', error);
-      }
-    };
+  const isTablet = useMediaQuery({
+    query: "(max-width: 1224px)"
+  });
 
-    fetchPresentationsAndDocs();
-  }, []);
+  const isMobile = useMediaQuery({
+    query: "(max-width: 786px)"
+  });
 
-  const handleDownload = (fileUrl) => {
-    window.open(fileUrl, '_blank');
-  };
+  const isPortrait = useMediaQuery({
+    query: "(orientation: portrait)"
+  });
+
+  const isRetina = useMediaQuery({
+    query: "(max-resolution: 300dpi)"
+  });
 
   return (
-    <PageContainer>
-      <Header />
-      <SubHeader />
-      <PresentationsAndDocsContainer>
-        {presentationsAndDocs.length > 0 ? (
-          presentationsAndDocs.map(item => (
-            <PresentationItem key={item.id}>
-              <PresentationInfo>
-                <PresentationImage src={item.image} alt={item.name} />
-                <div>
-                  <PresentationName>{item.name}</PresentationName>
-                  <PresentationDescription>{item.description}</PresentationDescription>
-                </div>
-              </PresentationInfo>
-              <ViewButton href={item.file} target="_blank" onClick={() => handleDownload(item.file)}>
-                Посмотреть
-              </ViewButton>
-            </PresentationItem>
-          ))
-        ) : (
-          <p>Нет доступных презентаций или документов.</p>
-        )}
-      </PresentationsAndDocsContainer>
-      <Footer />
-    </PageContainer>
+    <div>
+        {
+            isDesktop ? <PresentationsAndDocsPageDesktop /> : <PresentationsAndDocsPageMobile />
+        }
+    </div>
   );
 };
+
 
 export default PresentationsAndDocsPage;

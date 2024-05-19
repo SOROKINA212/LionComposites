@@ -15,7 +15,7 @@ const DeliveryPageContainer = styled.div`
 const DeliveryPageTitle = styled.h1`
     font-family: Montserrat, sans-serif;
     font-weight: 400;
-    font-size: 3.3vw;
+    font-size: 3vw;
     margin-bottom: 7%;
     text-align: center;
     color: #FFFFFF;

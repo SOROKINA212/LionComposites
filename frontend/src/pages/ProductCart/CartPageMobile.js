@@ -29,7 +29,7 @@ const MainContent = styled.div`
 const CartContainer = styled.div`
   max-width: 80%;
   margin: 0 auto;
-  padding: 2%;
+  padding: 1%;
   margin-top: 5%;
 `;
 
@@ -37,81 +37,95 @@ const CartItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 1% 0;
   border-bottom: 1px solid #F0F0F0;
 `;
 
 const ProductInfo = styled.div`
+  width: 100%;
+  height: 70px;
   display: flex;
   align-items: center;
 `;
 
 const ProductImage = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 30%;
+  height: 70%;
   border-radius: 10px;
-  margin-right: 20px;
+  margin-right: 4%;
 `;
 
 const ProductName = styled.h3`
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 2.3vw;
   color: #F0F0F0;
 `;
 
 const Quantity = styled.div`
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 0.5vw;
   color: #F0F0F0;
 `;
 
 const RemoveButton = styled.button`
   font-family: Montserrat, sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1.8vw;
   background-color: #F0F0F0;
   color: #1A1A1A;
   border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 3px;
+  padding: 0.5% 1%;
   cursor: pointer;
+
+   &:hover {
+    background-color: #D0D0D0; // Изменяем цвет фона при наведении
+    color: #1A1A1A; // Изменяем цвет текста при наведении
+  }
 `;
 
-const ProductDescription = styled.p`
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #F0F0F0;
-  margin-top: 5px;
-`;
 
 const TextBut = styled.p`
   font-family: Montserrat, sans-serif;
   font-weight: 200;
-  font-size: 2.5vw;
+  font-size: 2.3vw;
   color: #F0F0F0;
   margin-top: 5%;
 `;
 
 const TotalPrice = styled.div`
+
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 3vw;
+  font-size: 2.3vw;
   color: #F0F0F0;
   margin-top: 1%;
-  text-align: right;
+  margin-left: 0%;
+`;
+
+const Price = styled.div`
+  position: flex;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 2vw;
+  color: #F0F0F0;
+  margin-top: 0%;
+  padding-left: 20%;
+
+  padding-right: 7%;
 `;
 
 const QuantityInput = styled.input`
-  width: 50px;
-  padding: 5px;
+  position: flex;
+  width: 70%;
+  padding: 6%;
   border: 1px solid #F0F0F0;
   border-radius: 5px;
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 2.3vw;
   color: #1A1A1A;
   text-align: center;
 `;
@@ -120,8 +134,8 @@ const TotalContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 1%;
+  padding-top: 1%;
   border-top: 1px solid #F0F0F0;
 `;
 
@@ -129,13 +143,19 @@ const TotalContainer = styled.div`
 const OrderButton = styled.button`
   font-family: Montserrat, sans-serif;
   font-weight: 600;
-  font-size: 2.6vw;
+  font-size: 2.3vw;
   background-color: #F0F0F0;
   color: #1A1A1A;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 0.7% 1%;
   cursor: pointer;
+  margin-left: 65%;
+
+   &:hover {
+    background-color: #D0D0D0; // Изменяем цвет фона при наведении
+    color: #1A1A1A; // Изменяем цвет текста при наведении
+  }
 `;
 
 const FixedFooter = styled(Footer)`
@@ -240,7 +260,6 @@ const CartPage = () => {
                 <ProductImage src={item.product.image} alt={item.product.name} />
                 <div>
                   <ProductName>{item.product.name}</ProductName>
-                  <ProductDescription>{item.product.description}</ProductDescription>
                 </div>
               </ProductInfo>
               <Quantity>
@@ -251,7 +270,7 @@ const CartPage = () => {
         onChange={(e) => updateCartItem(item.id, e.target.value)}
       />
     </Quantity>
-              <TotalPrice>Итого: {(item.quantity * item.product.cost).toFixed(2)} руб.</TotalPrice>
+              <Price>Итого: {(item.quantity * item.product.cost).toFixed(2)} руб.</Price>
               <RemoveButton onClick={() => removeFromCart(item.id)}>Удалить</RemoveButton>
             </CartItem>
           ))
