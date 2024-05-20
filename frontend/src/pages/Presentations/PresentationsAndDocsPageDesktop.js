@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Header from './components/Header';
-import SubHeader from './components/SubHeader';
-import Footer from './components/Footer';
+import Header from '../components/Header';
+import SubHeader from '../components/SubHeader';
+import Footer from '../components/Footer';
 import { useMediaQuery } from 'react-responsive';
 
 const FixedHeader = styled(Header)`
@@ -81,7 +81,8 @@ const PresentationDescription = styled.p`
   margin-bottom: 25%;
 `;
 
-const ViewButton = styled.a`
+const ViewButton = styled.button`
+  height: 50%;
   font-family: Montserrat, sans-serif;
   font-weight: 600;
   font-size: 1vw;
@@ -90,10 +91,14 @@ const ViewButton = styled.a`
   border: none;
   border-radius: 5px;
   padding: 0.5% 1%;
-  text-decoration: none;
   cursor: pointer;
-  margin-top: 13%;
-  text-align: center;
+  margin-top: 10%;
+  margin-right: 2%;
+
+   &:hover {
+    background-color: #D0D0D0; // Изменяем цвет фона при наведении
+    color: #1A1A1A; // Изменяем цвет текста при наведении
+  }
 `;
 
 const FixedFooter = styled(Footer)`
