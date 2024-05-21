@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from './components/Header';
-import SubHeader from './components/SubHeader';
+import Header from '../components/Header';
+import SubHeader from '../components/SubHeader';
 import Rectangle43 from "./Rectangle43.png";
-import Footer from './components/Footer';
+import Footer from '../components/Footer';
 import { useMediaQuery } from 'react-responsive';
 import DeliveryDesktop from './DeliveryDesktop';
 import DeliveryMobile from './DeliveryMobile';

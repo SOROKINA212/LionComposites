@@ -23,6 +23,7 @@ const RegistrationContainer = styled.div`
 const MainContent = styled.div`
   flex-grow: 1;
   flex-direction: column;
+  flex-shrink: 0;
 `;
 
 const RegistrationFormContainer = styled.form`
@@ -79,15 +80,6 @@ const SubmitButton = styled.button`
   }
 `;
 
-const FixedFooter = styled(Footer)`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #1A1A1A;
-  z-index: 999;
-  height: 30%; // Устанавливаем высоту футера
-`;
 
 const RegistrationForm = () => {
   const [userData, setUserData] = useState({

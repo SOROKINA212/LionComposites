@@ -87,7 +87,7 @@ const FixedFooter = styled(Footer)`
   width: 100%;
   background-color: #1A1A1A;
   z-index: 999;
-  height: 30%; // Устанавливаем высоту футера
+  max-height: 30%; // Устанавливаем высоту футера
 `;
 
 const LoginForm = () => {

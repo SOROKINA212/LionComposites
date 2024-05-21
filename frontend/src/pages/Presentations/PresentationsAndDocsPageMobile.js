@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Header from './components/Header';
-import SubHeader from './components/SubHeader';
-import Footer from './components/Footer';
+import Header from '../components/Header';
+import SubHeader from '../components/SubHeader';
+import Footer from '../components/Footer';
 import { useMediaQuery } from 'react-responsive';
 
 const FixedHeader = styled(Header)`
