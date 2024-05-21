@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ProductCardList from './components/ProductCard';
 import axios from 'axios';
 import styled from 'styled-components';
-import Header from '../components/Header';
-import SubHeader from '../components/SubHeader';
-import Footer from '../components/Footer';
+import Header from './components/Header';
+import SubHeader from './components/SubHeader';
+import Footer from './components/Footer';
 
 const PageContainer = styled.div`
     background-color: #1A1A1A; /* Устанавливаем цвет фона для всей страницы */

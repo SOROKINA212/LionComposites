@@ -1,0 +1,21 @@
+/* FooterStyles.css */
+
+.footer {
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.footer-column {
+    flex-basis: 30%; /* Ширина каждой колонки */
+}
+
+.footer p {
+    font-family: Montserrat, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}

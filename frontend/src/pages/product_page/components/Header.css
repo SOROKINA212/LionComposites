@@ -1,0 +1,110 @@
+header {
+  background-color: #333; /* Цвет фона шапки */
+  padding: 10px; /* Внутренний отступ шапки */
+  display: flex; /* Располагаем элементы в один ряд */
+  justify-content: space-between; /* Равномерно распределяем элементы по ширине */
+  align-items: center; /* Выравниваем элементы по вертикали */
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+  position: relative; /* Добавляем относительное позиционирование для шапки */
+}
+
+.logo {
+  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт */
+  font-weight: bold; /* Устанавливаем жирный стиль */
+  color: #fff; /* Цвет текста логотипа */
+}
+
+.search-bar {
+  position: relative;
+  width: 50%;
+}
+
+.search-bar input {
+  width: 100%; /* Занимаем всю доступную ширину */
+  padding: 5px; /* Внутренний отступ для поля ввода */
+  border-radius: 4px; /* Закругляем углы поля ввода */
+  border: none; /* Убираем границу */
+}
+
+.icons {
+  margin-right: 10px; /* Отступ справа для иконок */
+}
+
+.icon {
+  font-size: 20px; /* Размер иконок */
+  margin-right: 40px; /* Отступ между иконками */
+  color: #fff; /* Цвет иконок */
+}
+
+.account-btn-container {
+  position: relative; /* Добавляем относительное позиционирование для контейнера кнопки */
+}
+
+.account-btn {
+  height: 100%; /* Занимаем всю доступную высоту */
+  background-color: #0056b3; /* Изменяем цвет фона кнопки */
+  color: #fff; /* Цвет текста кнопки */
+  border: none; /* Убираем границу */
+  padding: 10px 15px; /* Внутренний отступ кнопки */
+  border-radius: 0; /* Убираем закругление углов кнопки */
+  cursor: pointer; /* Изменяем вид курсора при наведении */
+}
+
+.account-btn:hover {
+  background-color: #003d80; /* Цвет фона кнопки при наведении */
+}
+
+.dropdown-menu {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Устанавливаем z-index, чтобы выпадающий список был поверх шапки */
+}
+
+.dropdown-item {
+  display: block;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #353333;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-dropdown-header {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #F0F0F0;
+  padding: 10px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.search-dropdown-item {
+  display: block;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #F0F0F0;
+  padding: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.search-dropdown-item:hover {
+  background-color: #1A1A1A;
+}
