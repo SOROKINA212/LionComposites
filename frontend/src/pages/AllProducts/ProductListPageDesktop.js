@@ -151,6 +151,16 @@ const FilterButton = styled.button`
   cursor: pointer;
 `;
 
+const CategoryDropdown = styled.div`
+  position: absolute;
+  background-color: #353333;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+  width: 200px;
+  margin-top: 10px;
+`;
+
 const ProductListPage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -161,6 +171,7 @@ const ProductListPage = () => {
   const [isAddToCartClicked, setIsAddToCartClicked] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(1);
   const [cartItems, setCartItems] = useState([]);
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -180,6 +191,11 @@ const ProductListPage = () => {
 
   const handleCategoryFilter = (categoryId) => {
     setSelectedCategory(categoryId);
+    setShowCategoryDropdown(false);
+  };
+
+  const toggleCategoryDropdown = () => {
+    setShowCategoryDropdown(!showCategoryDropdown);
   };
 
   const handleSortOrder = (order) => {
@@ -310,38 +326,58 @@ const decrementCartQuantity = async (item) => {
 
   return (
     <PageContainer>
-      <Header />
-      <SubHeader />
-      <FilterContainer>
-        <FilterButton
-          onClick={() => handleCategoryFilter(null)}
-          isActive={selectedCategory === null}
+    <Header />
+    <SubHeader />
+    <FilterContainer>
+      <FilterButton
+        onClick={toggleCategoryDropdown}
+        isActive={showCategoryDropdown}
+      >
+        Все категории
+      </FilterButton>
+      {showCategoryDropdown && (
+        <div
+          style={{
+            position: 'absolute',
+            backgroundColor: '#353333',
+            borderRadius: '5px',
+            padding: '10px',
+            zIndex: '1',
+            width: '200px',
+            marginTop: '10px',
+          }}
         >
-          Все категории
-        </FilterButton>
-        {categories.map((category) => (
           <FilterButton
-            key={category.id}
-            onClick={() => handleCategoryFilter(category.id)}
-            isActive={selectedCategory === category.id}
+            onClick={() => handleCategoryFilter(null)}
+            isActive={selectedCategory === null}
           >
-            {category.name}
+            Все категории
           </FilterButton>
-        ))}
-        <FilterButton
-          onClick={() => handleSortOrder('low-to-high')}
-          isActive={sortOrder === 'low-to-high'}
-        >
-          Сначала дешевые
-        </FilterButton>
-        <FilterButton
-          onClick={() => handleSortOrder('high-to-low')}
-          isActive={sortOrder === 'high-to-low'}
-        >
-          Сначала дорогие
-        </FilterButton>
-      </FilterContainer>
-      <ProductListContainer>
+          {categories.map((category) => (
+            <FilterButton
+              key={category.id}
+              onClick={() => handleCategoryFilter(category.id)}
+              isActive={selectedCategory === category.id}
+            >
+              {category.name}
+            </FilterButton>
+          ))}
+        </div>
+      )}
+      <FilterButton
+        onClick={() => handleSortOrder('low-to-high')}
+        isActive={sortOrder === 'low-to-high'}
+      >
+        Сначала дешевые
+      </FilterButton>
+      <FilterButton
+        onClick={() => handleSortOrder('high-to-low')}
+        isActive={sortOrder === 'high-to-low'}
+      >
+        Сначала дорогие
+      </FilterButton>
+    </FilterContainer>
+    <ProductListContainer>
         {filteredProducts.map((product) => (
           <ProductCard>
           <ProductLink key={product.id} to={`/product/${product.id}`}>

@@ -5,6 +5,7 @@ header {
   justify-content: space-between; /* Равномерно распределяем элементы по ширине */
   align-items: center; /* Выравниваем элементы по вертикали */
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #1A1A1A, #3F3F3F);
 }
 
 .logo {
@@ -38,14 +39,15 @@ header {
 
 .account-btn {
   height: 100%; /* Занимаем всю доступную высоту */
-  background-color: #0056b3; /* Изменяем цвет фона кнопки */
+  background-color: #272727; /* Изменяем цвет фона кнопки */
   color: #fff; /* Цвет текста кнопки */
   border: none; /* Убираем границу */
   padding: 10px 15px; /* Внутренний отступ кнопки */
   border-radius: 0; /* Убираем закругление углов кнопки */
   cursor: pointer; /* Изменяем вид курсора при наведении */
+
 }
 
 .account-btn:hover {
-  background-color: #003d80; /* Цвет фона кнопки при наведении */
+  background-color: #3F3F3F; /* Цвет фона кнопки при наведении */
 }

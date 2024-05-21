@@ -2,53 +2,38 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Footer from '../components/Footer';
+import { useMediaQuery } from 'react-responsive';
+import LoginFormDesktop from './LoginFormDesktop';
+import LoginFormMobile from './LoginFormMobile';
 
 const LoginForm = () => {
-  const { setUser } = useAuth();
-  const [userData, setUserData] = useState({
-    username: '',
-    password: ''
+const isDesktop = useMediaQuery({
+    query: "(min-width: 1224px)"
   });
-  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
+  const isTablet = useMediaQuery({
+    query: "(max-width: 1224px)"
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(`http://localhost:8000/api/login/`, userData);
-      const { token, user } = response.data;
-      localStorage.setItem('token', token); // Сохраняем токен в localStorage
-      setUser(user);
-      navigate('/');
-      console.log('Authentication successful');
-      console.log('Current user:', user);
-    } catch (error) {
-      console.error('Authentication failed:', error);
-    }
-  };
+  const isMobile = useMediaQuery({
+    query: "(max-width: 786px)"
+  });
 
-  return (
+  const isPortrait = useMediaQuery({
+    query: "(orientation: portrait)"
+  });
+
+  const isRetina = useMediaQuery({
+    query: "(max-resolution: 300dpi)"
+  });
+
+ return (
     <div>
-      <h2>Авторизация</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Логин:
-            <input type="text" name="username" value={userData.username} onChange={handleChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Пароль:
-            <input type="password" name="password" value={userData.password} onChange={handleChange} />
-          </label>
-        </div>
-        <button type="submit">Войти</button>
-      </form>
+        {
+            isDesktop ? <LoginFormDesktop /> : <LoginFormMobile />
+        }
     </div>
   );
 };

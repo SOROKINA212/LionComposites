@@ -2,6 +2,7 @@
 import React from 'react';
 import './Header.css'; // Импортируем CSS файл
 import SubHeader from './SubHeader';
+import DropdownMenu from './DropdownMenu';
 
 class Header extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class Header extends React.Component {
           <span className="icon">🔍</span>
           <span className="icon">⚙️</span>
         </div>
-        <button className="account-btn">Личный кабинет</button>
+        <DropdownMenu />
       </header>
     );
   }

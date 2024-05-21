@@ -4,6 +4,7 @@
   background-color: #3F3F3F; /* Цвет фона саб-хедера */
   padding: 10px 20px; /* Внутренние отступы саб-хедера */
   text-align: center; /* Выравниваем текст по центру */
+  background: linear-gradient(to top, #1A1A1A, #3F3F3F);
 }
 
 nav ul {

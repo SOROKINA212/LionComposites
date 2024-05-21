@@ -40,29 +40,30 @@ const PresentationsAndDocsContainer = styled.div`
   margin: 0 auto;
   background-color: #353333;
   border-radius: 20px;
-  padding: 1%;
+
 `;
 
 const PresentationItem = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 1% 0;
+
 
 `;
 
 const PresentationInfo = styled.div`
- height: 170px;
+  height: 130px;
   display: flex;
-  align-items: center;
-border-bottom: 1px solid #F0F0F0;
+// Добавляем это свойство
+  border-bottom: 1px solid #F0F0F0;
+  flex-grow: 1;
 `;
 
 const PresentationImage = styled.img`
-  width: 60%;
-  height: 100%;
+  width: 20%;
+  height: 20%;
   border-radius: 10px;
-  margin-right: 4%;
-  margin-bottom: 7%;
+  margin-right: 1%;
+
 `;
 
 const PresentationName = styled.h3`
@@ -71,6 +72,7 @@ const PresentationName = styled.h3`
   font-size: 1.3vw;
   color: #F0F0F0;
   margin-bottom: 10%;
+  justify-content: center;
 `;
 
 const PresentationDescription = styled.p`
@@ -79,6 +81,8 @@ const PresentationDescription = styled.p`
   font-size: 1vw;
   color: #F0F0F0;
   margin-bottom: 25%;
+  align-items: left;
+  margin-bottom: 5%;
 `;
 
 const ViewButton = styled.button`
@@ -92,7 +96,7 @@ const ViewButton = styled.button`
   border-radius: 5px;
   padding: 0.5% 1%;
   cursor: pointer;
-  margin-top: 10%;
+  margin-top: 12%;
   margin-right: 2%;
 
    &:hover {
@@ -145,8 +149,8 @@ const PresentationsAndDocsPage = () => {
         {presentationsAndDocs.length > 0 ? (
           presentationsAndDocs.map(item => (
             <PresentationItem key={item.id}>
+            <PresentationImage src={item.image} alt={item.name} />
               <PresentationInfo>
-                <PresentationImage src={item.image} alt={item.name} />
                 <div>
                   <PresentationName>{item.name}</PresentationName>
                   <PresentationDescription>{item.description}</PresentationDescription>
