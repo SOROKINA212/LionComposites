@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from './components/Header';
-import SubHeader from './components/SubHeader';
+import Header from '../components/Header';
+import SubHeader from '../components/SubHeader';
 import Review from './components/ReviewMobile';
 import { useAuth } from '../../AuthProvider';
 import ReviewForm from './components/ReviewFormMobile';
-import Footer from './components/Footer';
+import Footer from '../components/Footer';
 import { useMediaQuery } from 'react-responsive';
 
 import 'typeface-montserrat';

@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from './components/Header';
-import SubHeader from './components/SubHeader';
+import Header from '../components/Header';
+import SubHeader from '../components/SubHeader';
 import styled from 'styled-components';
-import Footer from './components/Footer';
+import Footer from '../components/Footer';
 import MapComponent from './components/MapMobile';
 import { useMediaQuery } from 'react-responsive';
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Header.css';
 import SubHeader from './SubHeader';
-import { useAuth } from '../../../AuthProvider';
+import { useAuth } from '../../AuthProvider';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Header = () => {
