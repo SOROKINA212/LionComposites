@@ -37,8 +37,8 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-    width: 90%;
-    height: 70%;
+    width: 70%;
+    height: 50%;
     border-radius: 55px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: relative;
@@ -49,7 +49,7 @@ const Text = styled.p`
     width: 100%;
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 2.5vw;
+    font-size: 1.7vw;
     color: #F0F0F0;
     text-align: left;
     margin-left: 3%;
@@ -57,7 +57,7 @@ const Text = styled.p`
 const AdvantagesTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Medium */
-    font-size: 2.5vw;
+    font-size: 1.7vw;
     color: #F0F0F0;
     margin-top: 10%;
     text-align: left;
@@ -65,7 +65,7 @@ const AdvantagesTitle = styled.h2`
 const AdvantageList = styled.ul`
     font-family: Montserrat, sans-serif;
     font-weight: lighter;
-    font-size: 2.1vw;
+    font-size: 1.5vw;
     color: #F0F0F0;
     list-style-type: disc;
     margin-left: 3%;
@@ -77,7 +77,7 @@ const AdvantageListItem = styled.li`
 const PaymentTitle = styled.h2`
     font-family: Montserrat, sans-serif;
     font-weight: 500; /* Меняем стиль на Medium */
-    font-size: 2.5vw;
+    font-size: 1.7vw;
     color: #F0F0F0;
     margin-top: 7%; /* Добавляем отступ сверху */
     margin-bottom: 2%; /* Добавляем отступ снизу */
@@ -87,7 +87,7 @@ const PaymentTitle = styled.h2`
 const PaymentMethods = styled.ul`
     font-family: Montserrat, sans-serif;
     font-weight: lighter; /* Делаем текст тоньше */
-    font-size: 2.1vw;
+    font-size: 1.5vw;
     color: #F0F0F0;
     margin-left: 2%;
     text-align: right;
@@ -148,7 +148,7 @@ const DeliveryPage = () => {
                 <ImageContainer>
                     <Image src={Rectangle43} />
                     <Text>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                       Компания «Лион Композит» находится в Ростове-на-Дону и поставляет полиэфирные, эпоксидные смолы, разделительные и армирующие материалы. Также в нашем каталоге можно выбрать и заказать декоративные добавки для полиэфирных и эпоксидных систем, инструменты и тару для работы, стеклопластик. Удобная схема сотрудничества позволяет нашим клиентам экономить время и средства, заказывая у нас в любом регионе РФ.
                     </Text>
                 </ImageContainer>
                 <AdvantagesTitle>Наши преимущества</AdvantagesTitle>
@@ -174,7 +174,7 @@ const DeliveryPage = () => {
                         </Column>
                         <VerticalLine />
                         <Column>
-                            <ColumnText>1) Транспортная компания;<br/>2) Почта России;<br/>3) Автобус;<br/>4) Любой другой способ удобный для Вас.</ColumnText>
+                            <ColumnText>• Транспортная компания;<br/>• Почта России;<br/>• Автобус;<br/>• Любой другой способ удобный для Вас.</ColumnText>
                         </Column>
                     </ColumnsContainer>
                 </Rectangle>

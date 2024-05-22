@@ -169,9 +169,14 @@ const AdditionalRectangle = styled.div`
 const AdditionalText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 2.3vw;
+    font-size: 1.3vw;
     color: #F0F0F0;
 `;
+
+const InfoListItem = styled.li`
+    margin-bottom: 2%;
+`;
+
 const AdditionalLeftRectangle = styled.div`
     width: 45%;
     height: 50%;
@@ -190,7 +195,7 @@ const AdditionalLeftRectangle = styled.div`
 const AdditionalLeftText = styled.p`
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    font-size: 2.3vw;
+    font-size: 1.3vw;
     color: #F0F0F0;
 `;
 const CooperationTitle = styled.h2`
@@ -198,7 +203,7 @@ const CooperationTitle = styled.h2`
     font-weight: 500;
     font-size: 2.5vw;
     color: #FFFFFF;
-    margin-top: 25%; /* Дополнительный отступ сверху */
+    margin-top: 15%; /* Дополнительный отступ сверху */
     margin-left: auto; /* Установлено автоматическое выравнивание слева */
     margin-right: -10%; /* Добавлен отступ справа */
     width: 50%; /* Ширина контейнера установлена на 40% */
@@ -261,15 +266,25 @@ const AboutUsDesktop = () => {
         <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
         <AdditionalRectangle>
           <AdditionalText>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Стеклопластик – композитный материал, состоящий из стекловолокна и связующего вещества.
+            Наполнитель широко используется из-за армированного волокна, которое обеспечивает защиту от воздействий окружающей среды.
+            Товар нашел применение в различных сферах деятельности:<br/>
+
+<InfoListItem>автомобиле-, авиа- и судостроении;</InfoListItem>
+<InfoListItem>производстве стеклопластиковых труб и емкостей для хранения;</InfoListItem>
+<InfoListItem>транспортировке химически агрессивных компонентов.</InfoListItem>
           </AdditionalText>
         </AdditionalRectangle>
         </ContentBox>
         <ContentBoxBot>
         <AdditionalLeftRectangle>
           <AdditionalLeftText>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Клиенты обозначили преимущества сотрудничества с фирмой:<br/>
+
+<InfoListItem>индивидуальный подход;</InfoListItem>
+<InfoListItem>лояльная ценовая политика;</InfoListItem>
+<InfoListItem>широкий ассортимент материалов;</InfoListItem>
+<InfoListItem>доставка во все регионы страны различными способами.</InfoListItem>
           </AdditionalLeftText>
         </AdditionalLeftRectangle>
         <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>

@@ -42,7 +42,7 @@ header {
 
 .account-btn {
   height: 100%; /* Занимаем всю доступную высоту */
-  background-color: #0056b3; /* Изменяем цвет фона кнопки */
+  background-color: #F0F0F0; /* Изменяем цвет фона кнопки */
   color: #fff; /* Цвет текста кнопки */
   border: none; /* Убираем границу */
   padding: 10px 15px; /* Внутренний отступ кнопки */
@@ -51,7 +51,7 @@ header {
 }
 
 .account-btn:hover {
-  background-color: #003d80; /* Цвет фона кнопки при наведении */
+  background-color: #D0D0D0; /* Цвет фона кнопки при наведении */
 }
 
 .dropdown-menu {

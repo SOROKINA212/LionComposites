@@ -150,7 +150,7 @@ const DeliveryPage = () => {
                 <DeliveryPageTitle>Как мы работаем с клиентами</DeliveryPageTitle>
                 <ImageContainer>
                 <Text>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                       Компания «Лион Композит» находится в Ростове-на-Дону и поставляет полиэфирные, эпоксидные смолы, разделительные и армирующие материалы. Также в нашем каталоге можно выбрать и заказать декоративные добавки для полиэфирных и эпоксидных систем, инструменты и тару для работы, стеклопластик. Удобная схема сотрудничества позволяет нашим клиентам экономить время и средства, заказывая у нас в любом регионе РФ.
                 </Text>
                     <Image src={Rectangle43} />
                 </ImageContainer>
@@ -177,7 +177,7 @@ const DeliveryPage = () => {
                         </Column>
                         <VerticalLine />
                         <Column>
-                            <ColumnText>1) Транспортная компания;<br/>2) Почта России;<br/>3) Автобус;<br/>4) Любой другой способ удобный для Вас.</ColumnText>
+                            <ColumnText>• Транспортная компания;<br/>• Почта России;<br/>• Автобус;<br/>• Любой другой способ удобный для Вас.</ColumnText>
                         </Column>
                     </ColumnsContainer>
 

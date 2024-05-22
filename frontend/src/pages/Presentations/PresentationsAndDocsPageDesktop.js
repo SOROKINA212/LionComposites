@@ -135,9 +135,9 @@ const PresentationsAndDocsPage = () => {
     fetchPresentationsAndDocs();
   }, []);
 
-  const handleDownload = (fileUrl) => {
-    window.open(fileUrl, '_blank');
-  };
+ const handleDownload = (fileUrl) => {
+  window.open(fileUrl, '_blank');
+};
 
   return (
     <PageContainer>
