@@ -125,6 +125,10 @@ const InfoText = styled.p`
     margin-bottom: 3%;
 `;
 
+const InfoListItem = styled.li`
+    margin-bottom: 2%;
+`;
+
 const AboutRectangle = styled.div`
     width: 100%; /* Ширина 70% страницы */
     margin: 0 auto; /* Центрирование по горизонтали */
@@ -247,12 +251,22 @@ const AboutUsMobile = () => {
           </AboutText>
         <AdditionalTitle>Область применения <br/> стекломатериалов</AdditionalTitle>
           <AdditionalText>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+             Стеклопластик – композитный материал, состоящий из стекловолокна и связующего вещества.
+            Наполнитель широко используется из-за армированного волокна, которое обеспечивает защиту от воздействий окружающей среды.
+            Товар нашел применение в различных сферах деятельности:<br/>
+
+<InfoListItem>автомобиле-, авиа- и судостроении;</InfoListItem>
+<InfoListItem>производстве стеклопластиковых труб и емкостей для хранения;</InfoListItem>
+<InfoListItem>транспортировке химически агрессивных компонентов.</InfoListItem>
           </AdditionalText>
            <CooperationTitle>Сотрудничество с <br/> компанией Лион-Юг </CooperationTitle>
           <AdditionalLeftText>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Клиенты обозначили преимущества сотрудничества с фирмой:<br/>
+
+<InfoListItem>индивидуальный подход;</InfoListItem>
+<InfoListItem>лояльная ценовая политика;</InfoListItem>
+<InfoListItem>широкий ассортимент материалов;</InfoListItem>
+<InfoListItem>доставка во все регионы страны различными способами.</InfoListItem>
           </AdditionalLeftText>
       </ContentContainer>
       <Footer />
