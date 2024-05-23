@@ -147,7 +147,6 @@ const PresentationsAndDocsPage = () => {
                 <PresentationImage src={item.image} alt={item.name} />
                 <div>
                   <PresentationName>{item.name}</PresentationName>
-                  <PresentationDescription>{item.description}</PresentationDescription>
                 </div>
               </PresentationInfo>
               <ViewButton href={item.file} target="_blank" onClick={() => handleDownload(item.file)}>
