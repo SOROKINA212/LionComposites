@@ -42,13 +42,6 @@ class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-    def get_queryset(self):
-        queryset = self.queryset
-        search_query = self.request.query_params.get('search', None)
-        if search_query:
-            queryset = queryset.filter(name__icontains=search_query)
-        return queryset
-
 class CategoryDetail(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer

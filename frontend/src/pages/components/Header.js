@@ -4,6 +4,7 @@ import SubHeader from './SubHeader';
 import { useAuth } from '../../AuthProvider';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import './Header.css';
 
 const HeaderContainer = styled.header`
   background-color: #333;
@@ -229,9 +230,9 @@ const Header = () => {
         <span className="icon">⚙️</span>
       </div>
       <div className="account-btn-container">
-        <AccountButton onClick={toggleDropdown}>
+        <button className="account-btn" onClick={toggleDropdown}>
           Личный кабинет
-        </AccountButton>
+        </button>
         {isDropdownOpen && (
           <div className="dropdown-menu">
             {user ? (
