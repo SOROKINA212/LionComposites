@@ -11,6 +11,7 @@ import CartPage from './pages/ProductCart/CartPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 import PresentationsAndDocsPage from './pages/Presentations/PresentationsAndDocsPage';
 import ProductListPage from './pages/AllProducts/ProductListPage';
+import EditProfilePage from './pages/EditProfilePage/EditProfilePage';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/presentations" element={<PresentationsAndDocsPage />} />
           <Route path="/all" element={<ProductListPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/profile" element={<EditProfilePage />} />
         </Routes>
       </Router>
     </AuthProvider>

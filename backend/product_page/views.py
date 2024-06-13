@@ -1,22 +1,25 @@
 # product_page/views.py
 
-from rest_framework import generics
+from rest_framework import generics, viewsets
 import logging
 from django.db.models import Q
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Product, Category, Review, CustomUser, Cart, PresentationsAndDocs  # Импортируем модель Review
-from .serializers import ProductSerializer, CategorySerializer, CustomUserSerializer, ReviewSerializer, CartSerializer, PresentationsAndDocsSerializer  # Импортируем сериализатор отзывов
+from .models import Product, Category, Review, CustomUser, Cart, PresentationsAndDocs, \
+    Slider, PrivacyPolicy  # Импортируем модель Review
+from .serializers import ProductSerializer, CategorySerializer, CustomUserSerializer, ReviewSerializer, CartSerializer, \
+    PresentationsAndDocsSerializer, SliderSerializer, PrivacyPolicySerializer  # Импортируем сериализатор отзывов
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.conf import settings
+from django.template import loader
 
 logger = logging.getLogger(__name__)
 
@@ -214,24 +217,67 @@ class CreateOrder(APIView):
             })
             total_price += item.quantity * item.product.cost
 
-        order_info = {
+        # Создаем контекст для письма администратора
+        admin_context = {
             'user': user.username,
+            'first_name': user.name,
+            'last_name': user.second_name,
+            'phone_number': user.phone_number,
             'items': order_details,
             'total_price': total_price,
             'delivery_method': delivery_method,
+            'delivery_address': delivery_address if delivery_method == 'delivery' else None,
         }
 
-        if delivery_method == 'delivery':
-            order_info['delivery_address'] = delivery_address
+        # Создаем контекст для письма пользователя
+        user_context = {
+            'user': user.username,
+            'first_name': user.name,
+            'phone_number': user.phone_number,
+            'items': order_details,
+            'delivery_method': delivery_method,
+            'delivery_address': delivery_address if delivery_method == 'delivery' else None,
+        }
 
-        # 发送电子邮件
-        subject = 'New Order Received'
-        message = f"A new order has been placed:\n\n{order_info}"
-        from_email = settings.EMAIL_HOST_USER
-        to_email = settings.ADMIN_EMAIL
-        send_mail(subject, message, from_email, [to_email], fail_silently=False)
+        # Отправляем письмо пользователю
+        user_template = loader.get_template('user_order_email.html')
+        user_html_content = user_template.render(user_context)
+        user_subject = 'Заказ оформлен на сайте'
+        user_from_email = settings.EMAIL_HOST_USER
+        user_to_email = [user.email]
+        user_email = EmailMultiAlternatives(user_subject, user_html_content, user_from_email, user_to_email)
+        user_email.attach_alternative(user_html_content, "text/html")
+        user_email.send(fail_silently=False)
 
-        # 清空购物车
+        # Отправляем письмо администратору
+        admin_template = loader.get_template('admin_order_email.html')
+        admin_html_content = admin_template.render(admin_context)
+        admin_subject = 'Новый заказ на сайте'
+        admin_from_email = settings.EMAIL_HOST_USER
+        admin_to_email = [settings.ADMIN_EMAIL]
+        admin_email = EmailMultiAlternatives(admin_subject, admin_html_content, admin_from_email, admin_to_email)
+        admin_email.attach_alternative(admin_html_content, "text/html")
+        admin_email.send(fail_silently=False)
+
+        # Очищаем корзину после создания заказа
         cart_items.delete()
 
-        return Response(order_info, status=status.HTTP_201_CREATED)
+        return Response({'message': 'Order created successfully'}, status=status.HTTP_201_CREATED)
+
+class SliderViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Slider.objects.all().order_by('order')
+    serializer_class = SliderSerializer
+
+
+class PrivacyPolicyView(APIView):
+    def get(self, request):
+        try:
+            privacy_policy = PrivacyPolicy.objects.first()
+            if privacy_policy:
+                serializer = PrivacyPolicySerializer(privacy_policy)
+                file_url = request.build_absolute_uri(serializer.data['file'])
+                return Response({'file_url': file_url})
+            else:
+                return Response({'error': 'Privacy policy file not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

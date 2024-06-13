@@ -134,6 +134,9 @@ const Button = styled.button`
     margin-top: 6%;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
     border-radius: 16px
+    &:hover {
+    background-color: #D0D0D0;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -166,13 +169,16 @@ const AddReviewButton = styled.button`
     /* Отображать кнопку только для авторизованных пользователей */
     font-family: Montserrat, sans-serif;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1vw;
     padding: 10px 20px;
     background-color: #F0F0F0;
     color: #1A1A1A;
     border: none;
     cursor: pointer;
     margin-top: 20px;
+    &:hover {
+    background-color: #D0D0D0;
+  }
 `;
 
 
@@ -274,6 +280,7 @@ const ProductDetail = () => {
             </ProductDescription>
             <Reviews> Отзывы </Reviews>
             {user && <ReviewForm productId={id} userId={user.id} />} {/* Передаем userId из контекста аутентификации */} {/* Передаем userId из контекста аутентификации */}
+            <AddReviewButton>Отправить отзыв</AddReviewButton>
             <Review productId={id} />
             <Footer />
             </PageContainer>

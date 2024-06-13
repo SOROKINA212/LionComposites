@@ -79,3 +79,16 @@ class PresentationsAndDocs(models.Model):
 
     def __str__(self):
         return self.name
+
+class Slider(models.Model):
+    image = models.ImageField(upload_to='slider/', null=True, blank=True)
+    order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"Slider Image {self.order}"
+
+class PrivacyPolicy(models.Model):
+    file = models.FileField(upload_to='privacy_policy/', null=True, blank=True)
+
+    def __str__(self):
+        return 'Privacy Policy'

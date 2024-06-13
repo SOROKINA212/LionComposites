@@ -56,8 +56,8 @@ const SubmitButton = styled.button`
   transition: background-color 0.3s ease;
   box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
 
-  &:hover {
-    background-color: #0056b3;
+ &:hover {
+    background-color: #D0D0D0;
   }
 `;
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/Header';
+import Header from '../components/HeaderMobile';
 import SubHeader from '../components/SubHeader';
 import Review from './components/ReviewMobile';
 import { useAuth } from '../../AuthProvider';
@@ -115,9 +115,6 @@ const Price = styled.p`
 `;
 
 const Button = styled.button`
-    font-family: Montserrat, sans-serif;
-    font-weight: 600;
-    font-size: 2.8vw;
     padding: 0.7% 2%;
     background-color: #F0F0F0;
     color: #1A1A1A;
@@ -131,7 +128,10 @@ const Button = styled.button`
     right: 5%; /* Устанавливаем отступ от правого края */
     margin-top: 15%;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
-    border-radius: 5px
+    border-radius: 5px;
+    &:hover {
+    background-color: #D0D0D0;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -164,13 +164,16 @@ const AddReviewButton = styled.button`
     /* Отображать кнопку только для авторизованных пользователей */
     font-family: Montserrat, sans-serif;
     font-weight: 600;
-    font-size: 4vw;
+    font-size: 1.5vw;
     padding: 10px 20px;
     background-color: #F0F0F0;
     color: #1A1A1A;
     border: none;
     cursor: pointer;
     margin-top: 2%;
+    &:hover {
+    background-color: #D0D0D0;
+  }
 `;
 
 
@@ -255,6 +258,7 @@ useEffect(() => {
             </ProductDescription>
             <Reviews> Отзывы </Reviews>
             {user && <ReviewForm productId={id} userId={user.id} />} {/* Передаем userId из контекста аутентификации */} {/* Передаем userId из контекста аутентификации */}
+
             <Review productId={id} />
             <Footer />
             </PageContainer>

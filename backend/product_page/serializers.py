@@ -1,6 +1,7 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Product, Category, CustomUser, Review, Cart, PresentationsAndDocs
+from .models import Product, Category, CustomUser, Review, Cart, PresentationsAndDocs, Slider, PrivacyPolicy
+
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -68,3 +69,14 @@ class PresentationsAndDocsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PresentationsAndDocs
         fields = ['id', 'name', 'description', 'file', 'image']
+
+
+class SliderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slider
+        fields = ['id', 'image', 'order']
+
+class PrivacyPolicySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PrivacyPolicy
+        fields = ['file']

@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../components/HeaderMobile';
 import SubHeader from '../components/SubHeader';
 import styled from 'styled-components';
 import Footer from '../components/Footer';

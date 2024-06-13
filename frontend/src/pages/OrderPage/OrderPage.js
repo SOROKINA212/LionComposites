@@ -5,261 +5,39 @@ import Header from '../components/Header';
 import SubHeader from '../components/SubHeader';
 import Footer from '../components/Footer';
 import { useAuth } from '../../AuthProvider';
+import { useMediaQuery } from 'react-responsive';
+import OrderPageDesktop from './OrderPageDesktop';
+import OrderPageMobile from './OrderPageMobile';
 
-const PageContainer = styled.div`
-  background-color: #1A1A1A;
-  padding: 20px;
-`;
-
-const OrderContainer = styled.div`
-  max-width: 80%;
-  margin: 0 auto;
-  background-color: #353333;
-  border-radius: 20px;
-  padding: 20px;
-`;
-
-const CartItemContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #F0F0F0;
-`;
-
-const ProductInfo = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ProductImage = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  margin-right: 20px;
-`;
-
-const ProductName = styled.h3`
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #F0F0F0;
-`;
-
-const Quantity = styled.div`
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #F0F0F0;
-`;
-
-const TotalPrice = styled.div`
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #F0F0F0;
-  margin-top: 20px;
-  text-align: right;
-`;
-
-const DeliveryOptions = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-`;
-
-const DeliveryOption = styled.div`
-  display: flex;
-  align-items: center;
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #F0F0F0;
-`;
-
-const DeliveryInput = styled.input`
-  margin-right: 10px;
-`;
-
-const AddressContainer = styled.div`
-  margin-top: 20px;
-`;
-
-const AddressInput = styled.input`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #F0F0F0;
-  border-radius: 5px;
-  font-family: Montserrat, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #1A1A1A;
-  margin-bottom: 10px;
-`;
-
-const PayButton = styled.button`
-  font-family: Montserrat, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  background-color: #F0F0F0;
-  color: #1A1A1A;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  display: block;
-  margin: 20px auto 0;
-`;
 
 const OrderPage = () => {
-  const { user } = useAuth();
-  const [cartItems, setCartItems] = useState([]);
-  const [deliveryMethod, setDeliveryMethod] = useState('pickup');
-  const [deliveryAddress, setDeliveryAddress] = useState({
-    city: '',
-    street: '',
-    entrance: '',
-    apartment: '',
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1224px)"
   });
 
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8000/api/cart/`, {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
-        const cartData = response.data;
-        const cartItemsWithProducts = await Promise.all(
-          cartData.map(async (item) => {
-            const productResponse = await axios.get(`http://localhost:8000/api/products/${item.product}/`, {
-              headers: {
-                Authorization: `Token ${token}`,
-              },
-            });
-            return { ...item, product: productResponse.data };
-          })
-        );
-        setCartItems(cartItemsWithProducts);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      }
-    };
+  const isTablet = useMediaQuery({
+    query: "(max-width: 1224px)"
+  });
 
-    if (user) {
-      fetchCartItems();
-    }
-  }, [user]);
+  const isMobile = useMediaQuery({
+    query: "(max-width: 786px)"
+  });
 
-  const getTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + (item.quantity * item.product.cost), 0);
-  };
+  const isPortrait = useMediaQuery({
+    query: "(orientation: portrait)"
+  });
 
-  const handleDeliveryMethodChange = (method) => {
-    setDeliveryMethod(method);
-  };
-
-  const handleAddressChange = (field, value) => {
-    setDeliveryAddress((prevAddress) => ({
-      ...prevAddress,
-      [field]: value,
-    }));
-  };
-
-  const handlePayment = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:8000/api/orders/',
-        {
-          delivery_method: deliveryMethod,
-          delivery_address: deliveryAddress,
-        },
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
-      );
-      alert('Order placed successfully!');
-    } catch (error) {
-      console.error('Error placing order:', error);
-    }
-  };
+  const isRetina = useMediaQuery({
+    query: "(max-resolution: 300dpi)"
+  });
 
   return (
-    <PageContainer>
-      <Header />
-      <SubHeader />
-      <OrderContainer>
-        {cartItems.map((item) => (
-          <CartItemContainer key={item.id}>
-            <ProductInfo>
-              <ProductImage src={item.product.image} alt={item.product.name} />
-              <div>
-                <ProductName>{item.product.name}</ProductName>
-              </div>
-            </ProductInfo>
-            <Quantity>{item.quantity}</Quantity>
-            <TotalPrice>Итого: {(item.quantity * item.product.cost).toFixed(2)} руб.</TotalPrice>
-          </CartItemContainer>
-        ))}
-        <TotalPrice>Общая сумма: {getTotalPrice().toFixed(2)} руб.</TotalPrice>
-        <DeliveryOptions>
-          <DeliveryOption>
-            <DeliveryInput
-              type="radio"
-              name="delivery-method"
-              checked={deliveryMethod === 'pickup'}
-              onChange={() => handleDeliveryMethodChange('pickup')}
-            />
-            Самовывоз
-          </DeliveryOption>
-          <DeliveryOption>
-            <DeliveryInput
-              type="radio"
-              name="delivery-method"
-              checked={deliveryMethod === 'delivery'}
-              onChange={() => handleDeliveryMethodChange('delivery')}
-            />
-            Доставка
-          </DeliveryOption>
-        </DeliveryOptions>
-        {deliveryMethod === 'delivery' && (
-          <AddressContainer>
-            <AddressInput
-              type="text"
-              placeholder="Город"
-              value={deliveryAddress.city}
-              onChange={(e) => handleAddressChange('city', e.target.value)}
-            />
-            <AddressInput
-              type="text"
-              placeholder="Улица"
-              value={deliveryAddress.street}
-              onChange={(e) => handleAddressChange('street', e.target.value)}
-            />
-            <AddressInput
-              type="text"
-              placeholder="Подъезд"
-              value={deliveryAddress.entrance}
-              onChange={(e) => handleAddressChange('entrance', e.target.value)}
-            />
-            <AddressInput
-              type="text"
-              placeholder="Квартира"
-              value={deliveryAddress.apartment}
-              onChange={(e) => handleAddressChange('apartment', e.target.value)}
-            />
-          </AddressContainer>
-        )}
-        <PayButton onClick={handlePayment}>Оплатить</PayButton>
-      </OrderContainer>
-      <Footer />
-    </PageContainer>
-  );
+    <div>
+        {
+            isDesktop ? <OrderPageDesktop /> : <OrderPageMobile />
+        }
+    </div>
+ );
 };
 
 export default OrderPage;

@@ -38,24 +38,26 @@ const PageContainer = styled.div`
 const PresentationsAndDocsContainer = styled.div`
   max-width: 80%;
   margin: 0 auto;
-  background-color: #353333;
+  background-color: #00000;
   border-radius: 20px;
-
+  margin-bottom: 3%;
 `;
 
 const PresentationItem = styled.div`
   display: flex;
-  justify-content: space-between;
-
-
+  background-color: #353333;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
 `;
 
 const PresentationInfo = styled.div`
-  height: 130px;
   display: flex;
-// Добавляем это свойство
-  border-bottom: 1px solid #F0F0F0;
+  flex-direction: column;
+  justify-content: center;
   flex-grow: 1;
+  margin-left: 20px;
 `;
 
 const PresentationImage = styled.img`
@@ -71,8 +73,7 @@ const PresentationName = styled.h3`
   font-weight: 400;
   font-size: 1.3vw;
   color: #F0F0F0;
-  margin-bottom: 10%;
-  justify-content: center;
+  margin-bottom: 10px;
 `;
 
 const PresentationDescription = styled.p`
@@ -80,13 +81,10 @@ const PresentationDescription = styled.p`
   font-weight: 400;
   font-size: 1vw;
   color: #F0F0F0;
-  margin-bottom: 25%;
-  align-items: left;
-  margin-bottom: 5%;
+  margin-bottom: 0;
 `;
 
 const ViewButton = styled.button`
-  height: 50%;
   font-family: Montserrat, sans-serif;
   font-weight: 600;
   font-size: 1vw;
@@ -94,14 +92,13 @@ const ViewButton = styled.button`
   color: #1A1A1A;
   border: none;
   border-radius: 5px;
-  padding: 0.5% 1%;
+  padding: 10px 20px;
   cursor: pointer;
-  margin-top: 12%;
-  margin-right: 2%;
+  align-self: center;
 
-   &:hover {
-    background-color: #D0D0D0; // Изменяем цвет фона при наведении
-    color: #1A1A1A; // Изменяем цвет текста при наведении
+  &:hover {
+    background-color: #D0D0D0;
+    color: #1A1A1A;
   }
 `;
 

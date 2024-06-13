@@ -4,19 +4,23 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ProductLink = styled(Link)`
-    width: 304px;
-    height: 350px;
+    width: 15vw;
+    height: 30vh;
     border-radius: 31px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 3%; /* Отступ между ссылками на товары */
+    margin-left: 1vw; /* Отступ между ссылками на товары */
     margin-bottom: 2.5%;
     text-decoration: none; /* Убираем подчеркивание */
     background-image: url(${props => props.imageUrl});
-    background-size: cover;
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8); /* Добавляем тень */
+      &:hover {
+    background-color: #A9A9A9;
+  }
 `;
 
 const ProductRow = styled.div`

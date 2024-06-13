@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Header from '../components/Header';
+import Header from '../components/HeaderMobile';
 import SubHeader from '../components/SubHeader';
 import Footer from '../components/Footer';
 import { useMediaQuery } from 'react-responsive';
@@ -26,7 +26,6 @@ const PageTitle = styled.h1`
     margin-bottom: 5%;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 3%;
 `;
 
 const PageContainer = styled.div`
@@ -39,63 +38,67 @@ const PageContainer = styled.div`
 const PresentationsAndDocsContainer = styled.div`
   max-width: 80%;
   margin: 0 auto;
-  background-color: #353333;
+  background-color: #00000;
   border-radius: 20px;
-  padding: 1%;
+
 `;
 
 const PresentationItem = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: 1% 0;
-
+  background-color: #353333;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 9px 28.3px rgba(0, 0, 0, 0.8);
 `;
 
 const PresentationInfo = styled.div`
- height: 100px;
   display: flex;
-  align-items: center;
-border-bottom: 1px solid #F0F0F0;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  margin-left: 20px;
 `;
 
 const PresentationImage = styled.img`
-  width: 50%;
-  height: 75%;
-  border-radius: 7px;
-  margin-right: 4%;
-  margin-bottom: 4%;
+  width: 20%;
+  height: 20%;
+  border-radius: 10px;
+  margin-right: 1%;
+
 `;
 
 const PresentationName = styled.h3`
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 2.2vw;
+  font-size: 1.3vw;
   color: #F0F0F0;
-  margin-bottom: 10%;
+  margin-bottom: 10px;
 `;
 
 const PresentationDescription = styled.p`
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 2vw;
+  font-size: 1vw;
   color: #F0F0F0;
-  margin-bottom: 20%;
+  margin-bottom: 0;
 `;
 
 const ViewButton = styled.button`
   font-family: Montserrat, sans-serif;
   font-weight: 600;
-  font-size: 0.7vw;
+  font-size: 1vw;
   background-color: #F0F0F0;
   color: #1A1A1A;
   border: none;
   border-radius: 5px;
-  padding: 0.5% 1%;
+  padding: 10px 20px;
   cursor: pointer;
+  align-self: center;
 
-   &:hover {
-    background-color: #D0D0D0; // Изменяем цвет фона при наведении
-    color: #1A1A1A; // Изменяем цвет текста при наведении
+  &:hover {
+    background-color: #D0D0D0;
+    color: #1A1A1A;
   }
 `;
 
@@ -129,9 +132,9 @@ const PresentationsAndDocsPage = () => {
     fetchPresentationsAndDocs();
   }, []);
 
-  const handleDownload = (fileUrl) => {
-    window.open(fileUrl, '_blank');
-  };
+ const handleDownload = (fileUrl) => {
+  window.open(fileUrl, '_blank');
+};
 
   return (
     <PageContainer>
@@ -143,8 +146,8 @@ const PresentationsAndDocsPage = () => {
         {presentationsAndDocs.length > 0 ? (
           presentationsAndDocs.map(item => (
             <PresentationItem key={item.id}>
+            <PresentationImage src={item.image} alt={item.name} />
               <PresentationInfo>
-                <PresentationImage src={item.image} alt={item.name} />
                 <div>
                   <PresentationName>{item.name}</PresentationName>
                 </div>

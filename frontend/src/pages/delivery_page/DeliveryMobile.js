@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header';
+import Header from '../components/HeaderMobile';
 import SubHeader from '../components/SubHeader';
 import Rectangle43 from "./Rectangle43.png";
 import Footer from '../components/Footer';

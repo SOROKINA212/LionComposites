@@ -48,20 +48,24 @@ const SubmitButton = styled.button`
 
   margin-bottom: 2%;
   width: 50%; /* Ширина кнопки */
-  height: 3vh; /* Устанавливаем высоту кнопки в viewport height */
+  height: auto; /* Высота подстраивается автоматически */
+  padding: 0.5em 1em;
   border-radius: 10px; /* Закругления углов */
   background-color: #F0F0F0;
   color: #000000;
   border: none;
   cursor: pointer;
-  font-size: 3vw; /* Устанавливаем размер шрифта в vw */
+  font-size: 2vw; /* Устанавливаем размер шрифта в vw */
   font-family: 'Montserrat', sans-serif; /* Задаем шрифт Montserrat */
   font-weight: 400; /* Устанавливаем стиль Regular */
   transition: background-color 0.3s ease;
   box-shadow: 0px 4px 28.3px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  overflow: hidden; /* Обрезаем текст, который выходит за пределы кнопки */
+  text-overflow: ellipsis;
 
-  &:hover {
-    background-color: #0056b3;
+ &:hover {
+    background-color: #D0D0D0;
   }
 `;
 

@@ -1,7 +1,8 @@
 # urls.py
 from django.urls import path
 from . import views
-from .views import CategoryList, CategoryDetail, UserRegistration, UserLogin, ProductReviews, CheckAuth, CurrentUserView, UserDetail, CreateOrder
+from .views import CategoryList, CategoryDetail, UserRegistration, UserLogin, ProductReviews, CheckAuth, \
+    CurrentUserView, UserDetail, CreateOrder, PrivacyPolicyView
 
 urlpatterns = [
     path('api/products/', views.ProductList.as_view(), name='product-list'),
@@ -21,4 +22,6 @@ urlpatterns = [
     path('api/presentations-and-docs/', views.PresentationsAndDocsList.as_view(), name='presentations-and-docs-list'),
     path('api/presentations-and-docs/<int:pk>/', views.PresentationsAndDocsDetail.as_view(), name='presentations-and-docs-detail'),
     path('api/orders/', CreateOrder.as_view(), name='create-order'),
+    path('api/slider/', views.SliderViewSet.as_view({'get': 'list'}), name='slider-list'),
+    path('api/privacy-policy/', PrivacyPolicyView.as_view(), name='privacy-policy'),
 ]

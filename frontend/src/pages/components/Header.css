@@ -1,57 +1,49 @@
 header {
-  background-color: #333; /* Цвет фона шапки */
-  padding: 10px; /* Внутренний отступ шапки */
-  display: flex; /* Располагаем элементы в один ряд */
-  justify-content: space-between; /* Равномерно распределяем элементы по ширине */
-  align-items: center; /* Выравниваем элементы по вертикали */
+  background-color: #333;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
-  position: relative; /* Добавляем относительное позиционирование для шапки */
+  position: relative;
 }
 
 .logo {
-  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт */
-  font-weight: bold; /* Устанавливаем жирный стиль */
-  color: #fff; /* Цвет текста логотипа */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #fff;
 }
 
 .search-bar {
   position: relative;
   width: 50%;
+  left: 50%;
+  transform: translateX(-110%); /* 将搜索栏居中 */
 }
 
 .search-bar input {
-  width: 100%; /* Занимаем всю доступную ширину */
-  padding: 5px; /* Внутренний отступ для поля ввода */
-  border-radius: 4px; /* Закругляем углы поля ввода */
-  border: none; /* Убираем границу */
-}
-
-.icons {
-  margin-right: 10px; /* Отступ справа для иконок */
-}
-
-.icon {
-  font-size: 20px; /* Размер иконок */
-  margin-right: 40px; /* Отступ между иконками */
-  color: #fff; /* Цвет иконок */
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: none;
 }
 
 .account-btn-container {
-  position: relative; /* Добавляем относительное позиционирование для контейнера кнопки */
+  position: relative;
 }
 
 .account-btn {
-  height: 100%; /* Занимаем всю доступную высоту */
-  background-color: #F0F0F0; /* Изменяем цвет фона кнопки */
-  color: #fff; /* Цвет текста кнопки */
-  border: none; /* Убираем границу */
-  padding: 10px 15px; /* Внутренний отступ кнопки */
-  border-radius: 0; /* Убираем закругление углов кнопки */
-  cursor: pointer; /* Изменяем вид курсора при наведении */
+  height: 100%;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 .account-btn:hover {
-  background-color: #D0D0D0; /* Цвет фона кнопки при наведении */
+  background-color: #D0D0D0;
 }
 
 .dropdown-menu {
@@ -63,7 +55,7 @@ header {
   color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1; /* Устанавливаем z-index, чтобы выпадающий список был поверх шапки */
+  z-index: 1;
 }
 
 .dropdown-item {

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
 import styled from 'styled-components';
-import Header from './components/Header';
-import SubHeader from './components/SubHeader';
-import Footer from './components/Footer';
+import Header from '../components/HeaderMobile';
+import SubHeader from '../components/SubHeader';
+import Footer from '../components/Footer';
 import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
 
 const FixedHeader = styled(Header)`
     position: fixed;
@@ -29,7 +30,7 @@ const MainContent = styled.div`
 const CartContainer = styled.div`
   max-width: 80%;
   margin: 0 auto;
-  padding: 1%;
+  padding: 2%;
   margin-top: 5%;
 `;
 
@@ -37,46 +38,47 @@ const CartItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1% 0;
+  padding: 20px 0;
   border-bottom: 1px solid #F0F0F0;
 `;
 
 const ProductInfo = styled.div`
-  width: 100%;
-  height: 70px;
   display: flex;
   align-items: center;
+  width: 50%;
 `;
 
 const ProductImage = styled.img`
-  width: 30%;
-  height: 70%;
+  width: 40%;
+  height: 100%;
   border-radius: 10px;
-  margin-right: 4%;
+  margin-right: 20px;
 `;
 
 const ProductName = styled.h3`
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 2.3vw;
+  font-size: 1.2vw;
   color: #F0F0F0;
 `;
 
 const Quantity = styled.div`
+  display: flex;
+  align-items: center;
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 0.5vw;
+  font-size: 1vw;
   color: #F0F0F0;
 `;
 
 const RemoveButton = styled.button`
   font-family: Montserrat, sans-serif;
   font-weight: 600;
-  font-size: 1.8vw;
+  font-size: 0.7vw;
   background-color: #F0F0F0;
   color: #1A1A1A;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0.5% 1%;
   cursor: pointer;
 
@@ -90,42 +92,35 @@ const RemoveButton = styled.button`
 const TextBut = styled.p`
   font-family: Montserrat, sans-serif;
   font-weight: 200;
-  font-size: 2.3vw;
+  font-size: 1.2vw;
   color: #F0F0F0;
   margin-top: 5%;
 `;
 
 const TotalPrice = styled.div`
-
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 2.3vw;
+  font-size: 1.2vw;
   color: #F0F0F0;
-  margin-top: 1%;
-  margin-left: 0%;
 `;
 
 const Price = styled.div`
-  position: flex;
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 2vw;
+  font-size: 1.2vw;
   color: #F0F0F0;
-  margin-top: 0%;
-  padding-left: 20%;
-
-  padding-right: 7%;
+  width: 15%;
+  text-align: right;
 `;
 
 const QuantityInput = styled.input`
-  position: flex;
-  width: 70%;
-  padding: 6%;
+  width: 50px;
+  padding: 5px;
   border: 1px solid #F0F0F0;
   border-radius: 5px;
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 2.3vw;
+  font-size: 1vw;
   color: #1A1A1A;
   text-align: center;
 `;
@@ -134,27 +129,25 @@ const TotalContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1%;
-  padding-top: 1%;
-  border-top: 1px solid #F0F0F0;
+  margin-top: 20px;
+  padding-top: 20px;
 `;
 
 
 const OrderButton = styled.button`
   font-family: Montserrat, sans-serif;
   font-weight: 600;
-  font-size: 2.3vw;
+  font-size: 1.2vw;
   background-color: #F0F0F0;
   color: #1A1A1A;
   border: none;
-  border-radius: 3px;
-  padding: 0.7% 1%;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
-  margin-left: 65%;
 
-   &:hover {
-    background-color: #D0D0D0; // Изменяем цвет фона при наведении
-    color: #1A1A1A; // Изменяем цвет текста при наведении
+  &:hover {
+    background-color: #D0D0D0;
+    color: #1A1A1A;
   }
 `;
 
@@ -170,6 +163,7 @@ const FixedFooter = styled(Footer)`
 const CartPage = () => {
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate()
 
 
  useEffect(() => {
@@ -243,8 +237,7 @@ const CartPage = () => {
   };
 
   const handleOrder = () => {
-    // Здесь можно добавить логику для оформления заказа
-    console.log('Оформление заказа');
+    navigate("/order")
   };
 
   return (

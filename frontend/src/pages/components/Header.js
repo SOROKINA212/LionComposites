@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SubHeader from './SubHeader';
 import { useAuth } from '../../AuthProvider';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import './Header.css';
 
 const HeaderContainer = styled.header`
   background-color: #333;
@@ -20,6 +19,7 @@ const Logo = styled.div`
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   color: #fff;
+  cursor: pointer;
 `;
 
 const SearchBar = styled.div`
@@ -34,28 +34,19 @@ const SearchBar = styled.div`
   }
 `;
 
-const Icons = styled.div`
-  margin-right: 10px;
-
-  .icon {
-    font-size: 20px;
-    margin-right: 40px;
-    color: #fff;
-  }
-`;
-
 const AccountBtnContainer = styled.div`
   position: relative;
 `;
 
 const AccountBtn = styled.button`
   height: 100%;
-  background-color: #F0F0F0;
-  color: #fff;
+  background-color: #fff;
+  color: #333;
   border: none;
   padding: 10px 15px;
   border-radius: 0;
   cursor: pointer;
+  border-radius: 10px;
 
   &:hover {
     background-color: #D0D0D0;
@@ -72,16 +63,24 @@ const DropdownMenu = styled.div`
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1;
+  border-radius: 10px;
 `;
 
 const DropdownItem = styled.button`
   display: block;
   padding: 5px 0;
   cursor: pointer;
-`;
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  text-align: center;
+  line-height: 1.5;
+  border-radius: 10px;
 
-const AccountButton = styled.button`
-    background: #F7941E;
+  &:hover {
+    background-color: #1A1A1A;
+  }
 `;
 
 const SearchDropdown = styled.div`
@@ -125,9 +124,10 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState({ products: [], categories: [] });
+  const [searchResults, setSearchResults] = useState({ products: [] });
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(prevState => !prevState);
@@ -139,11 +139,19 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await logout();
-      setIsDropdownOpen(false);
-    } catch (error) {
-      console.error('Logout error:', error);
+    await logout();
+    setIsDropdownOpen(false);
+
+    if (location.pathname === '/profile' || location.pathname === '/cart' || location.pathname === '/order') {
+      // If the user is on /profile, /cart or /order, redirect them to the home page
+      navigate('/');
+    } else {
+      // If the user is on any other page, reload the current page
+      navigate(0);
     }
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
   };
 
   const handleLogin = () => {
@@ -154,6 +162,10 @@ const Header = () => {
     navigate('/cart');
   };
 
+  const handleProfile = () => {
+    navigate('/profile');
+  };
+
   const handleSearchInputChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -161,7 +173,7 @@ const Header = () => {
       fetchSearchResults(term);
       toggleSearchDropdown();
     } else {
-      setSearchResults({ products: [], categories: [] });
+      setSearchResults({ products: [] });
       toggleSearchDropdown();
     }
   };
@@ -169,20 +181,22 @@ const Header = () => {
   const fetchSearchResults = async (term) => {
     try {
       const productsResponse = await axios.get(`http://localhost:8000/api/products/?search=${term}`);
-      const categoriesResponse = await axios.get(`http://localhost:8000/api/categories/?search=${term}`);
       setSearchResults({
         products: productsResponse.data,
-        categories: categoriesResponse.data,
       });
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
   };
 
+  const handleLogoClick = () => {
+    navigate('http://localhost:3000/');
+  };
+
   return (
-    <header>
-      <div className="logo">Lion Composites</div>
-      <div className="search-bar">
+    <HeaderContainer>
+      <Logo onClick={handleLogoClick}>Lion Composites</Logo>
+      <SearchBar>
         <input
           type="text"
           placeholder="Поиск"
@@ -190,67 +204,49 @@ const Header = () => {
           onChange={handleSearchInputChange}
         />
         {isSearchDropdownOpen && (
-          <div className="search-dropdown">
+          <SearchDropdown>
             {searchResults.products.length > 0 && (
               <>
-                <div className="search-dropdown-header">Товары</div>
+                <SearchDropdownHeader>Товары</SearchDropdownHeader>
                 {searchResults.products.map((product) => (
-                  <Link
+                  <SearchDropdownItem
                     key={product.id}
                     to={`/product/${product.id}`}
-                    className="search-dropdown-item"
                   >
                     {product.name}
-                  </Link>
+                  </SearchDropdownItem>
                 ))}
               </>
             )}
-            {searchResults.categories.length > 0 && (
-              <>
-                <div className="search-dropdown-header">Категории</div>
-                {searchResults.categories.map((category) => (
-                  <Link
-                    key={category.id}
-                    to={`/categories/${category.id}`}
-                    className="search-dropdown-item"
-                  >
-                    {category.name}
-                  </Link>
-                ))}
-              </>
+            {searchResults.products.length === 0 && (
+              <SearchDropdownItem>Ничего не найдено</SearchDropdownItem>
             )}
-            {searchResults.products.length === 0 && searchResults.categories.length === 0 && (
-              <div className="search-dropdown-item">Ничего не найдено</div>
-            )}
-          </div>
+          </SearchDropdown>
         )}
-      </div>
-      <div className="icons">
-        <span className="icon">🔍</span>
-        <span className="icon">⚙️</span>
-      </div>
-      <div className="account-btn-container">
-        <button className="account-btn" onClick={toggleDropdown}>
+      </SearchBar>
+      <AccountBtnContainer>
+        <AccountBtn onClick={toggleDropdown}>
           Личный кабинет
-        </button>
+        </AccountBtn>
         {isDropdownOpen && (
-          <div className="dropdown-menu">
+          <DropdownMenu>
             {user ? (
               <>
-                <button className="dropdown-item" onClick={handleCart}>Корзина</button>
-                <button className="dropdown-item" onClick={handleLogout}>
+                <DropdownItem onClick={handleCart}>Корзина</DropdownItem>
+                <DropdownItem onClick={handleProfile}>Профиль</DropdownItem>
+                <DropdownItem onClick={handleLogout}>
                   Выйти
-                </button>
+                </DropdownItem>
               </>
             ) : (
-              <button className="dropdown-item" onClick={handleLogin}>
+              <DropdownItem onClick={handleLogin}>
                 Войти
-              </button>
+              </DropdownItem>
             )}
-          </div>
+          </DropdownMenu>
         )}
-      </div>
-    </header>
+      </AccountBtnContainer>
+    </HeaderContainer>
   );
 };
 

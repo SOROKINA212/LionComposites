@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ оформлен</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Заказ оформлен на сайте</h1>
+    <p>Уважаемый/ая {{ first_name }}, заказ оформлен и содержит следующие товары:</p>
+    <h2>Содержимое заказа:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Название товара</th>
+                <th>Количество</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Способ доставки: {{ delivery_method }}</p>
+    {% if delivery_address %}
+        <p>Адрес доставки:</p>
+        <ul>
+            <li>Город: {{ delivery_address.city }}</li>
+            <li>Улица: {{ delivery_address.street }}</li>
+            <li>Подъезд: {{ delivery_address.entrance }}</li>
+            <li>Квартира: {{ delivery_address.apartment }}</li>
+        </ul>
+    {% endif %}
+    <p>В ближайшее время с вами свяжется менеджер по этому номеру телефона {{ phone_number }}</p>
+</body>
+</html>
